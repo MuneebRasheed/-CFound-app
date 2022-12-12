@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from './component/Footer';
+import Footer from '../component/Footer';
 
 export default function Home({navigation}) {
 
@@ -11,7 +11,7 @@ export default function Home({navigation}) {
             <View style={styles.profileView}>
             <Image 
             style={styles.profile}
-            source={require('./assets/profile.jpeg')}
+            source={require('../assets/profile.jpeg')}
             />
             </View>
             <Text style={styles.headerText}>Hi, Laiba Sattar!</Text>
@@ -20,25 +20,26 @@ export default function Home({navigation}) {
             </TouchableOpacity>
             </View>
             <View style = {styles.body}>
-            <View style= {styles.imgView}>
+            <TouchableOpacity style= {styles.imgView}
+            onPress = {() => navigation.navigate('LostItems')}>
             <ImageBackground 
             style={styles.img}
-            resizeMode="cover"
-            source={require('./assets/img1.png')}
+            source={require('../assets/img1.png')}
             />
-            </View>
-            <View style= {styles.imgView}>
+            </TouchableOpacity>
+            <TouchableOpacity style= {styles.imgView}>
             <ImageBackground
             style={styles.img}
-            source={require('./assets/img2.png')}
+            source={require('../assets/img2.png')}
             />
-            </View>
-            <View style= {styles.imgView}>
+            </TouchableOpacity>
+            <TouchableOpacity style= {styles.imgView}
+            onPress = {() => navigation.navigate('Events')}>
             <ImageBackground
             style={styles.img}
-            source={require('./assets/img3.png')}
+            source={require('../assets/img3.png')}
             />
-            </View>
+            </TouchableOpacity>
             </View>
             <Footer/>
         </View>
@@ -60,26 +61,30 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     height:'30%',
     width:'10%',
-    marginTop:'18%',
+    marginTop:'16%',
     justifyContent:'center',
     alignItems:'center',
-    borderWidth:5,
+    borderWidth:3,
     borderColor:'white',
-    marginLeft:'5%'
+    marginLeft:'6%',
+    marginBottom:'5%',
   },
   profile: {
     width:'100%',
-    height:'100%'
+    height:'100%',
+    borderRadius:100
   },
   headerText: {
-    marginTop:'20%',
+    marginTop:'18%',
     marginLeft:'3%',
     fontWeight:'bold',
-    color:'white'
+    color:'white',
+    marginBottom:'7%'
   },
   headerIcon: {
-    marginTop:'19%',
-    marginLeft:'40%'
+    marginTop:'17%',
+    marginLeft:'43%',
+    marginBottom:'6%'
   },
   body: {
     flex: 0.77,
