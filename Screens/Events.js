@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,FlatList,Image} from 'react-native';
-import Footer from './component/Footer';
+import Footer from '../component/Footer';
 
 export default function Events({navigation}) {
   const DATA = [
