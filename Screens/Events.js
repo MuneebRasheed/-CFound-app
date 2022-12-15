@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View,FlatList,Image} from 'react-native';
+import { StyleSheet, Text, View,FlatList,Image, TouchableOpacity} from 'react-native';
 import Footer from '../component/Footer';
+import Header from '../component/Header';
+import FontAwesome from "react-native-vector-icons/FontAwesome5";
 
 export default function Events({navigation}) {
   const DATA = [
@@ -40,15 +42,15 @@ export default function Events({navigation}) {
       description:'Event Six',
     },
   ];
+  function onNavigate (){
+    navigation.pop()
+  }
   
     return (
       // Main VIEW
         <View style={[styles.container]}>
           {/* TOP VIEW */}
-            <View style = {styles.header}>
-                <Text style={styles.headertxt}>Events</Text>
-            </View>
-
+          <Header title='Events' navi={() => onNavigate()}/>
           {/* Middle view */}
           <View style = {styles.body}>
              <FlatList
@@ -67,6 +69,9 @@ export default function Events({navigation}) {
               </View>
           }
             /> 
+            <TouchableOpacity style = {{position:'absolute',bottom:'2%',right:'-8%',backgroundColor:'#ce5c2b',borderRadius:50,padding:'6%',justifyContent:'center',alignItems:'center'}}>
+            <FontAwesome style={{color: 'white' }} name="edit" size={27} />
+            </TouchableOpacity>
             </View>
             {/* Footer View */}
              <Footer/>
@@ -79,22 +84,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'#242527'
   },
-  header: {
-    flex: .15,
-    backgroundColor: '#ce5c2b',
-    justifyContent:'center',
-    alignItems:'center'
-  },
-  headertxt:{
-    fontSize:40,
-    fontWeight:'bold'
-  },
   innerview:{
     backgroundColor:'white',
     borderBottomWidth: 5
   },
   body: {
-    flex: 0.77,
+    flex: 0.79,
     marginTop:'2%',
     marginBottom:'2%',
     alignItems:'center',
