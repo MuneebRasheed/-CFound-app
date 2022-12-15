@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Footer from '../component/Footer';
@@ -7,6 +6,7 @@ export default function Home({navigation}) {
 
     return (
         <View style = {styles.container}>
+          {/* HEADER */}
             <View style = {styles.header}>
             <View style={styles.profileView}>
             <Image 
@@ -19,6 +19,7 @@ export default function Home({navigation}) {
             <Ionicons style={{color: 'white'}} name="notifications-outline" size={25} />
             </TouchableOpacity>
             </View>
+          {/* BODY  */}
             <View style = {styles.body}>
             <TouchableOpacity style= {styles.imgView}
             onPress = {() => navigation.navigate('LostItems')}>
@@ -41,6 +42,7 @@ export default function Home({navigation}) {
             />
             </TouchableOpacity>
             </View>
+            {/* FOOTER */}
             <Footer/>
         </View>
 );
@@ -52,22 +54,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#242527',
   },
   header: {
-    flex: 0.15,
+    flex: 0.13,
     backgroundColor: '#ce5c2b',
-    flexDirection:'row'
+    flexDirection:'row',
+    paddingBottom:'6%',
+    alignItems:'flex-end',
   },
   profileView: {
     borderRadius:50,
     backgroundColor:'white',
-    height:'30%',
+    height:'35%',
     width:'10%',
-    marginTop:'16%',
     justifyContent:'center',
     alignItems:'center',
     borderWidth:3,
     borderColor:'white',
     marginLeft:'6%',
-    marginBottom:'5%',
   },
   profile: {
     width:'100%',
@@ -75,19 +77,18 @@ const styles = StyleSheet.create({
     borderRadius:100
   },
   headerText: {
-    marginTop:'18%',
     marginLeft:'3%',
     fontWeight:'bold',
     color:'white',
-    marginBottom:'7%'
+    paddingBottom:'2%',
+    fontSize:16
   },
   headerIcon: {
-    marginTop:'17%',
-    marginLeft:'43%',
-    marginBottom:'6%'
+    marginLeft:'40%',
+    paddingBottom:'1%'
   },
   body: {
-    flex: 0.77,
+    flex: 0.79,
     backgroundColor: '#242527',
     alignItems:'center',
     justifyContent:'center'

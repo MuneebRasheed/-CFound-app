@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function footer() {
+export default function Footer() {
 
     return (
 
