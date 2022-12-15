@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from '../component/Footer';
+import Footer from '../Component/Footer.js';
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
+
+
 
     return (
         <View style = {styles.container}>
@@ -24,21 +26,23 @@ export default function Home({navigation}) {
             <TouchableOpacity style= {styles.imgView}
             onPress = {() => navigation.navigate('LostItems')}>
             <ImageBackground 
+
             style={styles.img}
             source={require('../assets/img1.png')}
-            />
-            </TouchableOpacity>
-            <TouchableOpacity style= {styles.imgView}>
-            <ImageBackground
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.imgView}>
+          <ImageBackground
             style={styles.img}
             source={require('../assets/img2.png')}
-            />
-            </TouchableOpacity>
-            <TouchableOpacity style= {styles.imgView}
-            onPress = {() => navigation.navigate('Events')}>
-            <ImageBackground
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.imgView}
+          onPress={() => navigation.navigate('Events')}>
+          <ImageBackground
             style={styles.img}
             source={require('../assets/img3.png')}
+
             />
             </TouchableOpacity>
             </View>
@@ -46,6 +50,7 @@ export default function Home({navigation}) {
             <Footer/>
         </View>
 );
+
 }
 
 const styles = StyleSheet.create({
@@ -56,6 +61,7 @@ const styles = StyleSheet.create({
   header: {
     flex: 0.13,
     backgroundColor: '#ce5c2b',
+
     flexDirection:'row',
     paddingBottom:'6%',
     alignItems:'flex-end',
@@ -70,13 +76,15 @@ const styles = StyleSheet.create({
     borderWidth:3,
     borderColor:'white',
     marginLeft:'6%',
+
   },
   profile: {
-    width:'100%',
-    height:'100%',
-    borderRadius:100
+    width: '100%',
+    height: '100%',
+    borderRadius: 100
   },
   headerText: {
+
     marginLeft:'3%',
     fontWeight:'bold',
     color:'white',
@@ -90,15 +98,15 @@ const styles = StyleSheet.create({
   body: {
     flex: 0.79,
     backgroundColor: '#242527',
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   img: {
-    width:'100%',
-    height:'100%'
+    width: '100%',
+    height: '100%'
   },
   imgView: {
-    width:'80%',
-    height:'20%'
+    width: '80%',
+    height: '20%'
   }
 });
