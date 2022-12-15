@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from '../Component/Footer.js';
+import Footer from '../component/Footer.js';
 
 export default function Home({ navigation }) {
-
-
-
     return (
         <View style = {styles.container}>
           {/* HEADER */}
@@ -26,7 +23,6 @@ export default function Home({ navigation }) {
             <TouchableOpacity style= {styles.imgView}
             onPress = {() => navigation.navigate('LostItems')}>
             <ImageBackground 
-
             style={styles.img}
             source={require('../assets/img1.png')}
           />
@@ -42,7 +38,6 @@ export default function Home({ navigation }) {
           <ImageBackground
             style={styles.img}
             source={require('../assets/img3.png')}
-
             />
             </TouchableOpacity>
             </View>

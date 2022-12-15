@@ -69,15 +69,12 @@ export default function Events({ navigation }) {
                 <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{item.title}</Text>
                 <Text style={{ fontSize: 25 }}>{item.description}</Text>
               </View>
-
-          }
+              </View>
+            }
             /> 
             <TouchableOpacity style = {{position:'absolute',bottom:'2%',right:'-8%',backgroundColor:'#ce5c2b',borderRadius:50,padding:'6%',justifyContent:'center',alignItems:'center'}}>
             <FontAwesome style={{color: 'white' }} name="edit" size={27} />
-
-            </View>
-          }
-        />
+            </TouchableOpacity>
       </View>
       {/* Footer View */}
       <Footer />
