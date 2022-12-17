@@ -40,7 +40,7 @@ export default function LostItems({navigation}) {
           keyExtractor={item => item.id}
           renderItem={({item}) =>
           <TouchableOpacity style= {styles.category}
-             //onPress = {() => navigation.navigate('Home')}
+             onPress = {() => navigation.navigate('ItemCategory',{title: item.title})}
           >
           <Text style={styles.FlatListText}> {item.title}</Text>    
           </TouchableOpacity>
@@ -57,25 +57,26 @@ export default function LostItems({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#242527'
+    backgroundColor: '#3D3D3D'
   },
   body: {
-    flex: 0.79,
-    backgroundColor: '#242527',
+    flex: 0.82,
+    backgroundColor: '#3D3D3D',
     alignItems:'center',
     paddingTop:'10%'
   },
   category: {
-    backgroundColor: 'white',
+    backgroundColor: '#242527',
     margin: '6%',
     padding:'12%',
     borderRadius:10,
-    borderWidth:2,
+    borderWidth:1,
     borderColor:'#ce5c2b'
   },
   FlatListText: {
     textAlign:'center',
     fontSize:16,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    color:'white'
   }
 });

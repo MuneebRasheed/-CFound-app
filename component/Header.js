@@ -6,7 +6,7 @@ export default function Header({title, navi}) {
     return (
         <View style = {styles.header}>
           <TouchableOpacity style = {styles.headericon} onPress={navi}>
-              <FontAwesome style={{color: 'black' }} name="chevron-left" size={20} />
+              <FontAwesome style={{color: '#ce5c2b' }} name="chevron-left" size={18} />
           </TouchableOpacity>
           <View style={{justifyContent:'center',alignItems:'center'}}>
           <Text style={styles.headertxt}>{title}</Text>
@@ -16,8 +16,8 @@ export default function Header({title, navi}) {
 }
 const styles = StyleSheet.create({
     header: {
-        flex: .13,
-        backgroundColor: '#ce5c2b',
+        flex: .11,
+        backgroundColor: '#242527',
         justifyContent:'center',
         alignItems:'flex-end',
         paddingBottom:'4%',
@@ -26,11 +26,12 @@ const styles = StyleSheet.create({
       headericon: {
         paddingBottom:'2%',
         position:'absolute',
-        left:'4%',
+        left:'6%',
         bottom:'20%'
       },
       headertxt:{
-        fontSize:26,
+        fontSize:20,
         fontWeight:'bold',
+        color:'white'
       }
 });
