@@ -21,8 +21,8 @@ export default function Footer() {
 }
 const styles = StyleSheet.create({
 footer: {
-    flex: 0.08,
-    backgroundColor: '#ce5c2b',
+    flex: 0.07,
+    backgroundColor: '#242527',
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',

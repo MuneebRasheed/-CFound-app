@@ -8,6 +8,7 @@ import Events from './Screens/Events';
 import LostItems from './Screens/LostItems';
 import Chat from './Screens/Chat';
 import Login from './Screens/Login';
+import ItemCategory from './Screens/ItemCategory';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,10 +22,8 @@ export default function App() {
         <Stack.Screen name="Events" component={Events} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Chat" component={Chat} />
-
-   
-  
-
+        <Stack.Screen name="ItemCategory" component={ItemCategory} />
+      
       </Stack.Navigator>
     </NavigationContainer>
 

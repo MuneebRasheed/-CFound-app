@@ -51,7 +51,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#242527',
+    backgroundColor: '#3D3D3D',
   },
   header: {
     flex: 0.13,
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     paddingBottom:'1%'
   },
   body: {
-    flex: 0.79,
-    backgroundColor: '#242527',
+    flex: 0.81,
+    backgroundColor: '#3D3D3D',
     alignItems: 'center',
     justifyContent: 'center'
   },
