@@ -5,13 +5,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {StyleSheet} from 'react-native';
 import Home from './Screens/Home';
 import Events from './Screens/Events';
-import LostItems from './Screens/lostItems';
+import LostItems from './Screens/LostItems';
+import Login from './Screens/Login';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={Login}/>  
       <Stack.Screen name="Home" component={Home}/>
       <Stack.Screen name="LostItems" component={LostItems}/> 
       <Stack.Screen name="Events" component={Events}/> 
