@@ -6,14 +6,17 @@ import { StyleSheet } from 'react-native';
 import Home from './Screens/Home';
 import Events from './Screens/Events';
 import LostItems from './Screens/LostItems';
+
 import Chat from './Screens/Chat';
 import Login from './Screens/Login';
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
@@ -24,6 +27,7 @@ export default function App() {
 
    
   
+
 
       </Stack.Navigator>
     </NavigationContainer>
