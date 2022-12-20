@@ -1,90 +1,148 @@
-import { StyleSheet, Text, View, ImageBackground, Image, TextInput, Alert, Pressable, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image, TextInput, Alert, Pressable, TouchableOpacity, TouchableHighlight } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useState } from 'react'
+import Input from '../component/Input'
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { auth } from '../firebase/config'
+import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, query } from "firebase/firestore";
+// import firestore from '@react-native-firebase/firestore'
+import { db } from '../firebase/config';
+import { getAuth, updateProfile } from "firebase/auth";
+//end 
 
-export default function Login() {
+export default function Login({ navigation }) {
+  const [email, setEmail] = useState("laiba12@gmail.com");
+  const [password, setPassword] = useState("123456");
+  const [showPassword, setShowPassword] = useState(true);
+  ;
+
+  const loginUser = () => {
+    console.log("email", email);
+    console.log(password);
+    auth.signInWithEmailAndPassword(email, password)
+      .then(data => {
+
+        console.log('firebase return is = ', data)
+        navigation.navigate("LostItems");
+      }).catch(error => {
+        console.log('Catch Error', error)
+
+      })
+  }
+
   return (
     <View style={styles.container}>
-        <ImageBackground
-        style={styles.img}
-        source={require('../assets/loginheader.png')}>
-          <View style={{flex:1}}>
-            <View style={styles.top}>
-              <Image
-              style={styles.cap}
-              source={require('../assets/logincap.png')}/>
-              <Text style={styles.headertxt}>Welcome back!</Text>
+      <View style={styles.upperBottom}>
+        <View style={styles.upperTOP}>
+          <Image
+            style={styles.cap}
+            source={require('../assets/logincap.png')} />
+          <Text style={styles.headertxt}>Welcome back!</Text>
+        </View>
+      </View>
+      <View style={{ flex: 1 }}>
+        <View style={styles.bottom}>
+          <View style={styles.bottoTop}>
+            <Input placeholder='Enter your email' secureTextEntry={false} setData={setEmail} data={email} />
+            <View style={{ flexDirection: 'row', marginTop: '5%' }}>
+              <Input placeholder='Enter your password' secureTextEntry={showPassword} setData={setPassword} data={password} />
+              <Ionicons style={styles.eyeicon} name="eye-outline" size={20}
+                onPress={() => { setShowPassword(pre => !pre) }} />
+            </View>
+            <TouchableOpacity
+              onPress={() => Alert.alert("Pressed")}
+              style={styles.passwordTouchably}
+            >
+              <Text style={styles.grey}>Forgot Password?</Text>
+            </TouchableOpacity>
+
+            <View style={styles.loginMain}>
+              <TouchableOpacity
+                onPress={loginUser}
+                style={styles.loginBtn}
+              >
+                <Text style={styles.loginText}>Login</Text>
+              </TouchableOpacity>
+
+              <Text style={styles.grey}>Don't have an account?{"  "}
+                <TouchableOpacity onPress={() => { navigation.navigate('Signup') }} >
+                  <Text style={styles.registerNow}>Register Now</Text>
+                </TouchableOpacity>
+              </Text>
+
             </View>
 
-            <View style={styles.bottom}>
-              <TextInput style={styles.input}
-              placeholder='Enter your email'/>
-              <View style={{flexDirection:'row',marginTop:'5%'}}>
-                <TextInput style={styles.input}
-                placeholder='Enter your password'/>
-                <Ionicons style={{position:'absolute',right:'2%',alignSelf:'center'}} name="eye-outline" size={25} />
-                </View>
-                <View style={{marginTop:'1%',width:'100%'}}>
-                  <TouchableOpacity
-                  onPress={() => Alert.alert("Pressed")}
-                  >
-                  <Text style={{fontSize:16,color:'#8391A1',alignSelf:'flex-end',right:'10%',fontWeight:'bold'}}>Forgot Password?</Text>
-                  </TouchableOpacity>
-                  </View> 
-              {/* <TextInput style={[styles.input,{marginTop:'5%'}]}*/} 
-                   
-              <View style={{width:'100%',alignItems:'center'}}
-              onStartShouldSetResponder= {()=> Alert.alert("Presseds")}>
-              {/* <Image
-               style={{marginTop:'9%',height:'32%',width:'80%',borderRadius:8}}
-               source={require('../assets/loginbutton.png')}/> */}
-               </View>
-              </View>
           </View>
-        </ImageBackground>
+
+        </View>
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  upperBottom: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
+  upperTOP: {
+    flex: 1,
+    backgroundColor: '#242527',
+    borderBottomRightRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: '10%'
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  top:{
-    flex:.6,
-    justifyContent:'center',
-    alignItems:'center',
+  top: {
+    flex: .6,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  bottom:{
-    flex: .4,
-    alignItems:'center'
+  bottom: {
+    flex: 1,
+    backgroundColor: '#242527'
+
   },
+  bottoTop: {
+    flex: 1,
+    backgroundColor: 'white',
+    borderTopLeftRadius: 40,
+    paddingTop: '10%',
+    alignItems: 'center'
+  },
+
   img: {
-    width:'100%',
-    height:'106%',
+    width: '100%',
+    height: '106%',
   },
   cap: {
-    width:'22%',
-    height:'22%',
+    width: '22%',
+    height: '22%',
   },
-  headertxt:{
-    color:'#fff',
-    fontWeight:'bold',
-    fontSize:32
+  headertxt: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 32
   },
-  input:{
-    borderWidth:1,
-    borderColor:'#E8ECF4',
-    paddingHorizontal: 20,
-    paddingVertical:'1.5%',
-    borderRadius: 8,
-    fontSize: 18,
-    backgroundColor:'#E8ECF4',
-    width:'80%'
+
+  eyeicon: {
+    position: 'absolute', right: '2%', alignSelf: 'center', top: 18
+  }, passwordTouchably: {
+    justifyContent: 'flex-end', flexDirection: "row", width: "80%",
+    marginTop: 7
+  }, grey: { fontSize: 14, color: '#8391A1', fontWeight: 'bold' },
+  loginMain: { flex: .8, justifyContent: 'space-around', alignItems: 'center', width: '80%' },
+  loginBtn: {
+    width: "100%",
+    justifyContent: 'center', alignItems: 'center',
+    backgroundColor: '#DA692F', height: 40, borderRadius: 8
   },
-  eye:{
-    width:'6%',
-    height:'50%',
-    marginRight:'5%'
-  },
+  loginText: { fontSize: 14, color: 'white', fontWeight: 'bold' },
+  registerNow: { fontSize: 14, color: '#DA692F', fontWeight: 'bold', marginBottom: -4 }
 });
