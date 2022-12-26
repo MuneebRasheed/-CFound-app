@@ -15,6 +15,8 @@ import Signup from './Screens/Signup';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+
   return (
     <NavigationContainer>
 
