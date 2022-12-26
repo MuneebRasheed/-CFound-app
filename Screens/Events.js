@@ -10,37 +10,31 @@ export default function Events({ navigation }) {
     {
       id: '0',
       title: 'Awareness Program "Neat And Clean"',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
       date: 'December 12-16, 2022',
     },
     {
       id: '1',
       title: 'Second Item',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
       date: 'December 12-16, 2022',
     },
     {
       id: '2',
       title: 'Third',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
       date: 'December 12-16, 2022',
     },
     {
       id: '3',
       title: 'Fourth',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
       date: 'December 12-16, 2022',
     },
     {
       id: '4',
       title: 'Fifth',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
       date: 'December 12-16, 2022',
     },
     {
       id: '5',
       title: 'Sixth',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
       date: 'December 12-16, 2022',
     },
   ];
