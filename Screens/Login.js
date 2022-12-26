@@ -24,7 +24,7 @@ export default function Login({ navigation }) {
       .then(data => {
 
         console.log('firebase return is = ', data)
-        navigation.navigate("LostItems");
+        navigation.navigate("Home");
       }).catch(error => {
         console.log('Catch Error', error)
 

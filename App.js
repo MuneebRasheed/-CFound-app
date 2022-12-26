@@ -20,14 +20,16 @@ export default function App() {
 
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+      
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
 
-
-        <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="LostItems" component={LostItems} />
+        <Stack.Screen name="Chat" component={Chat} />
+        
         <Stack.Screen name="Events" component={Events} />
+        <Stack.Screen name="LostItems" component={LostItems} />
+        
         <Stack.Screen name="ItemCategory" component={ItemCategory} />
 
 
