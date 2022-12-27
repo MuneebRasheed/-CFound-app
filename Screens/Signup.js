@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Alert, TouchableOpacity, Image } from 'react-native';
+import firebase from 'firebase/compat/app';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useState } from 'react'
 import Input from '../component/Input'

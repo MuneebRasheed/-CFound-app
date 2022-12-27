@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Input from '../component/Input'
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import firebase from 'firebase/compat/app';
+
 // import { auth } from '../firebase/config';
 import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, query } from "firebase/firestore";
 // import firestore from '@react-native-firebase/firestore'
