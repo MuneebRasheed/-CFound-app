@@ -3,7 +3,7 @@ import React from 'react'
 
 const ChatProfile = () => {
     return (
-        <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity style={{ alignItems: 'center' }}>
             <View style={{ flexDirection: 'row', width: '90%', backgroundColor: 'white', paddingRight: 19 }}>
                 <Image style={{ width: 50, height: 50, borderRadius: 100, marginTop: '4%', marginRight: '4%', marginLeft: '4%', color: '#2192FF' }}
                     source={require('../assets/profile.jpeg')} />
@@ -22,7 +22,7 @@ const ChatProfile = () => {
                     </View>
                 </TouchableOpacity>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
