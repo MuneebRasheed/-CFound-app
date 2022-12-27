@@ -9,39 +9,33 @@ export default function Events({ navigation }) {
   const DATA = [
     {
       id: '0',
-      title: 'First Item',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
-      description: 'Event one',
+      title: 'Awareness Program "Neat And Clean"',
+      date: 'December 12-16, 2022',
     },
     {
       id: '1',
       title: 'Second Item',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
-      description: 'Event two',
+      date: 'December 12-16, 2022',
     },
     {
       id: '2',
       title: 'Third',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
-      description: 'Event three',
+      date: 'December 12-16, 2022',
     },
     {
       id: '3',
       title: 'Fourth',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
-      description: 'Event four',
+      date: 'December 12-16, 2022',
     },
     {
       id: '4',
       title: 'Fifth',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
-      description: 'Event five',
+      date: 'December 12-16, 2022',
     },
     {
       id: '5',
       title: 'Sixth',
-      imageurl: "https://www.townofscotlandneck.com/images/event.png",
-      description: 'Event Six',
+      date: 'December 12-16, 2022',
     },
   ];
 
@@ -56,23 +50,27 @@ export default function Events({ navigation }) {
           <Header title='Events' navi={() => onNavigate()}/>
           {/* Middle view */}
           <View style = {styles.body}>
-             <FlatList
+            <FlatList
             data={DATA}
             keyExtractor={item => item.id}
             renderItem={({item}) =>
+            <TouchableOpacity>
             <View style={styles.innerview}>
               <Image
-                source={{ uri: item.imageurl }}
+                source={require('../assets/events.png')}
                 style={[styles.img]}
               ></Image>
-              <View>
-                <Text style={{ fontSize: 20, fontWeight: 'bold', color:'white' }}>{item.title}</Text>
-                <Text style={{ fontSize: 16, color:'white'}}>{item.description}</Text>
+              <View style={{width:'57%'}}>
+                <View style={styles.flatlistheaderView}>
+                  <Text style={styles.flatlistheadertext}>{item.title}</Text>
+                  </View>
+                <Text style={styles.datetext}>On {item.date}</Text>
               </View>
               </View>
+              </TouchableOpacity>
             }
-            /> 
-            <TouchableOpacity style = {{position:'absolute',bottom:'5%',right:'4%',backgroundColor:'white',borderRadius:30,padding:'3%',justifyContent:'center',alignItems:'center',opacity:0.8}}>
+            />
+            <TouchableOpacity style = {styles.addbuttonopacity}>
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
       </View>
@@ -89,22 +87,51 @@ const styles = StyleSheet.create({
   },
   innerview:{
     backgroundColor:'#242527',
-    borderBottomWidth: 5,
-    marginBottom:'2%'
+    marginBottom:'7%',
+    flexDirection:'row',
+    borderRadius:15,
+
+
   },
   body: {
     flex: 0.82,
-    marginTop:'2%',
-    marginBottom:'2%',
+    marginTop:'7%',
+    marginBottom:'7%',
     alignItems:'center',
-    justifyContent:'center',
-    alignSelf:'center',
-    height:'100%'
-
+    width:'100%'
   },
   img: {
-    width: 300,
-    height: 120,
-    margin: 5
+    width: 120,
+    height: 103,
+    margin: 8
+  },
+  flatlistheaderView:{
+    borderBottomWidth:1,
+    borderBottomColor:'#ce5c2b'
+  },
+  flatlistheadertext:{
+    fontSize: 15,
+    fontWeight: 'bold',
+    color:'white',
+    paddingTop:'5%',
+    paddingBottom:'3%'
+  },
+  datetext:{
+    fontSize: 10, 
+    color:'white',
+    position:'absolute',
+    right:'0.1%',
+    bottom:'5%'
+  },
+  addbuttonopacity:{
+    position:'absolute',
+    bottom:'5%',
+    right:'4%',
+    backgroundColor:'white',
+    borderRadius:30,
+    padding:'3%',
+    justifyContent:'center',
+    alignItems:'center',
+    opacity:0.8
   }
 });
