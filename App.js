@@ -10,6 +10,7 @@ import Chat from './Screens/Chat';
 import Login from './Screens/Login';
 import ItemCategory from './Screens/ItemCategory';
 import Signup from './Screens/Signup';
+import Chatting from './Screens/Chatting';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,17 +23,16 @@ export default function App() {
 
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Chatting" component={Chatting} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-
 
         <Stack.Screen name="Chat" component={Chat} />
+
+        <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="LostItems" component={LostItems} />
         <Stack.Screen name="Events" component={Events} />
         <Stack.Screen name="ItemCategory" component={ItemCategory} />
-
-
       </Stack.Navigator>
     </NavigationContainer>
 
