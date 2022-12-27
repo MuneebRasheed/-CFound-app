@@ -30,7 +30,8 @@ export default function Home({ navigation }) {
             source={require('../assets/img1.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.imgView}>
+        <TouchableOpacity style={styles.imgView}
+        onPress={() => navigation.navigate('Announcements')}>
           <ImageBackground
             style={styles.img}
             source={require('../assets/img2.png')}

@@ -10,6 +10,7 @@ import Chat from './Screens/Chat';
 import Login from './Screens/Login';
 import ItemCategory from './Screens/ItemCategory';
 import Signup from './Screens/Signup';
+import Announcements from './Screens/Announcements';
 import Chatting from './Screens/Chatting';
 
 
@@ -31,6 +32,7 @@ export default function App() {
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Events" component={Events} />
         <Stack.Screen name="LostItems" component={LostItems} />
+        <Stack.Screen name="Announcements" component={Announcements} />
         
         <Stack.Screen name="ItemCategory" component={ItemCategory} />
       </Stack.Navigator>
