@@ -40,15 +40,13 @@ export default function LostItems({ navigation }) {
           keyExtractor={item => item.id}
           renderItem={({ item }) =>
             <TouchableOpacity style={styles.category}
-              onPress={() => navigation.navigate('ItemCategory', { title: item.title })}
+              onPress={() => navigation.navigate('Lost', { title: item.title })}
             >
               <Text style={styles.FlatListText}> {item.title}</Text>
             </TouchableOpacity>
           }
         />
       </View>
-      {/* FOOTER */}
-      <Footer />
 
     </View>
   );
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3D3D3D'
   },
   body: {
-    flex: 0.82,
+    flex: 0.89,
     backgroundColor: '#3D3D3D',
     alignItems: 'center',
     paddingTop: '10%'

@@ -76,8 +76,6 @@ export default function Events({ navigation }) {
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
       </View>
-      {/* Footer View */}
-      <Footer />
     </View>
   );
 }

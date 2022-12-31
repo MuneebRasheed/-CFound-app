@@ -41,8 +41,6 @@ export default function Home({ navigation }) {
             />
             </TouchableOpacity>
             </View>
-            {/* FOOTER */}
-            <Footer/>
         </View>
 );
 
