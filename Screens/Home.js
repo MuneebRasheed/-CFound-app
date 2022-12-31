@@ -42,13 +42,11 @@ export default function Home({ navigation }) {
           <ImageBackground
             style={styles.img}
             source={require('../assets/img3.png')}
-          />
-        </TouchableOpacity>
-      </View>
-      {/* FOOTER */}
-      <Footer />
-    </View>
-  );
+            />
+            </TouchableOpacity>
+            </View>
+        </View>
+);
 
 }
 

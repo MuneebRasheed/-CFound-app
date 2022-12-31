@@ -3,7 +3,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Footer from '../component/Footer.js';
 import Header from '../component/Header';
 
-export default function ItemCategory({ navigation,route }) {
+export default function Lost({ navigation,route }) {
     const DATA = [
         {
           id: '0',
@@ -46,11 +46,12 @@ export default function ItemCategory({ navigation,route }) {
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Lost</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                onPress= {() => navigation.navigate('Found',{title: route.params.title})}>
                     <Text style={styles.buttonText}>Found</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{flex:0.73}}>
+            <View style={{flex:0.89}}>
             <FlatList
                 showsVerticalScrollIndicator ={false}
                 showsHorizontalScrollIndicator={false}
@@ -77,8 +78,6 @@ export default function ItemCategory({ navigation,route }) {
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
             </View>
-        {/* FOOTER */}
-          <Footer/>
           
         </View>
     );

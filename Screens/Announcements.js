@@ -47,7 +47,7 @@ export default function Announcements({ navigation }) {
       // Main VIEW
         <View style={[styles.container]}>
           {/* TOP VIEW */}
-          <Header title='Events' navi={() => onNavigate()}/>
+          <Header title='Announcements' navi={() => onNavigate()}/>
           {/* Middle view */}
           <View style = {styles.body}>
             <FlatList
@@ -74,8 +74,6 @@ export default function Announcements({ navigation }) {
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
       </View>
-      {/* Footer View */}
-      <Footer />
     </View>
   );
 }
@@ -94,9 +92,9 @@ const styles = StyleSheet.create({
 
   },
   body: {
-    flex: 0.82,
+    flex: 0.89,
     marginTop:'7%',
-    marginBottom:'7%',
+    marginBottom:'2%',
     alignItems:'center',
     width:'100%'
   },

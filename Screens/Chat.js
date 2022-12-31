@@ -31,7 +31,6 @@ const Chat = () => {
                 <ChatProfile />
                 <ChatProfile />
             </ScrollView>
-            <Footer />
 
 
         </View >

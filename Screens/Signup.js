@@ -23,6 +23,7 @@ const Signup = ({ navigation }) => {
 
                 user.updateProfile({ displayName: username })
                 console.log('firebase return is = ', user);
+                navigation.navigate('Login');
             }).catch(error => {
                 console.log('Catch Error', error)
                 // Alert.alert('error', error.message);

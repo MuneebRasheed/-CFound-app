@@ -1,41 +1,14 @@
 
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
-import Home from './Screens/Home';
-import Events from './Screens/Events';
-import LostItems from './Screens/LostItems';
-import Chat from './Screens/Chat';
-import Login from './Screens/Login';
-import ItemCategory from './Screens/ItemCategory';
-import Signup from './Screens/Signup';
-import Announcements from './Screens/Announcements';
-import Chatting from './Screens/Chatting';
-
-
-const Stack = createNativeStackNavigator();
+import StackNavigator from './navigation/StackNavigator';
 
 export default function App() {
 
-
   return (
     <NavigationContainer>
-
-
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-      
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="Events" component={Events} />
-        <Stack.Screen name="LostItems" component={LostItems} />
-        <Stack.Screen name="Announcements" component={Announcements} />
-        
-        <Stack.Screen name="ItemCategory" component={ItemCategory} />
-      </Stack.Navigator>
+        <StackNavigator />
     </NavigationContainer>
 
   );
