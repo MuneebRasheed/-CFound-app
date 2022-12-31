@@ -4,11 +4,13 @@ import { useState } from 'react'
 import Input from '../component/Input'
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { auth } from '../firebase/config'
+import firebase from 'firebase/compat/app';
+
+// import { auth } from '../firebase/config';
 import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, query } from "firebase/firestore";
 // import firestore from '@react-native-firebase/firestore'
-import { db } from '../firebase/config';
-import { getAuth, updateProfile } from "firebase/auth";
+// import { db } from '../firebase/config';
+// import { getAuth, updateProfile } from "firebase/auth";
 //end 
 
 export default function Login({ navigation }) {
@@ -20,7 +22,7 @@ export default function Login({ navigation }) {
   const loginUser = () => {
     console.log("email", email);
     console.log(password);
-    auth.signInWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword(email, password)
       .then(data => {
 
         console.log('firebase return is = ', data)

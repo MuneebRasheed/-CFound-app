@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, Alert, TouchableOpacity, Image } from 'react-native';
+import firebase from 'firebase/compat/app';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useState } from 'react'
 import Input from '../component/Input'
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { auth } from '../firebase/config'
+// import { auth } from '../firebase/config'
 
 const Signup = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Signup = ({ navigation }) => {
     const [username, setUseranme] = useState("");
     const createUser = () => {
         console.log("email", email);
-        auth.createUserWithEmailAndPassword(email, password
+        firebase.auth().createUserWithEmailAndPassword(email, password
         )
             .then(({ user }) => {
                 // QUERY Firestore Ko Data Send Kar dain gai

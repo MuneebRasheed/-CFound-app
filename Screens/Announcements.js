@@ -5,16 +5,16 @@ import Header from '../component/Header';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-export default function Events({ navigation }) {
+export default function Announcements({ navigation }) {
   const DATA = [
     {
       id: '0',
-      title: 'Awareness Program "Neat And Clean"',
+      title: 'Instructions related to Exam Coupons',
       date: 'December 12-16, 2022',
     },
     {
       id: '1',
-      title: 'Second Item',
+      title: 'Bus timing and routes in Exams',
       date: 'December 12-16, 2022',
     },
     {
@@ -47,7 +47,7 @@ export default function Events({ navigation }) {
       // Main VIEW
         <View style={[styles.container]}>
           {/* TOP VIEW */}
-          <Header title='Events' navi={() => onNavigate()}/>
+          <Header title='Announcements' navi={() => onNavigate()}/>
           {/* Middle view */}
           <View style = {styles.body}>
             <FlatList
@@ -57,10 +57,10 @@ export default function Events({ navigation }) {
             <TouchableOpacity>
             <View style={styles.innerview}>
               <Image
-                source={require('../assets/events.png')}
+                source={require('../assets/announcement.png')}
                 style={[styles.img]}
               ></Image>
-              <View style={{width:'57%'}}>
+              <View style={{width:'65%'}}>
                 <View style={styles.flatlistheaderView}>
                   <Text style={styles.flatlistheadertext}>{item.title}</Text>
                   </View>
@@ -99,9 +99,9 @@ const styles = StyleSheet.create({
     width:'100%'
   },
   img: {
-    width: 120,
-    height: 103,
-    margin: 8
+    width: 90,
+    height: 120,
+    margin: 5
   },
   flatlistheaderView:{
     borderBottomWidth:1,
