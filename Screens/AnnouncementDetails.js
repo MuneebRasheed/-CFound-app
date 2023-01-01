@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View,Image} from 'react-native';
+import { StyleSheet, Text, View,ScrollView} from 'react-native';
 import Header from '../component/Header';
 
 
@@ -14,10 +14,10 @@ export default function AnnouncementDetails({route,navigation}) {
           {/* TOP VIEW */}
           <Header title='Announcement Details' navi={() => onNavigate()}/>
           <View style={styles.mainView}>
-            <View style={styles.textView}>
+            <ScrollView style={styles.textView}>
                 <Text style={{fontWeight:'bold',fontSize:20,color:'white',marginBottom:'3%'}}>{title}</Text> 
                 <Text style={{fontSize:15,color:'white'}}>{desc}</Text>
-            </View>
+            </ScrollView>
           </View>
           
     </View>
@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   textView:{
+    marginTop:'5%',
+    marginBottom:'5%',
     width:'83%',
     height:'90%',
   }
