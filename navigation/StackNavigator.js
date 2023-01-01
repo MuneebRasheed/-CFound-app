@@ -11,6 +11,7 @@ import Announcements from '../Screens/Announcements';
 import EventDetails from '../Screens/EventDetails';
 import AnnouncementDetails from '../Screens/AnnouncementDetails';
 import EventAdd from '../Screens/EventAdd';
+import AnnouncementAdd from '../Screens/AnnouncementAdd';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const StackNavigator = () => {
         <Stack.Screen name="EventDetails" component={EventDetails} />       
         <Stack.Screen name="Announcements" component={Announcements}/>
         <Stack.Screen name="AnnouncementDetails" component={AnnouncementDetails}/>
+        <Stack.Screen name="AnnouncementAdd" component={AnnouncementAdd}/>
         <Stack.Screen name="Lost" component={Lost}/>
         <Stack.Screen name="Found" component={Found} options={{ animation: 'none' }}/>
         <Stack.Screen name="Chat" component={BottomTabNavigator} />

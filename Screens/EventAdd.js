@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 
 export default function EventAdd({ navigation }) {
-  //description, picture
   const [time,settime] = useState('1')
   const [tme,settme] = useState('AM')
   function onNavigate (){
