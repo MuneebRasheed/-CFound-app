@@ -102,7 +102,8 @@ export default function Events({ navigation }) {
               </TouchableOpacity>
             }
             />
-            <TouchableOpacity style = {styles.addbuttonopacity}>
+            <TouchableOpacity style = {styles.addbuttonopacity}
+            onPress={()=> {navigation.navigate('EventAdd')}}>
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
       </View>
