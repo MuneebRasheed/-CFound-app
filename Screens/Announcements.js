@@ -11,31 +11,37 @@ export default function Announcements({ navigation }) {
       id: '0',
       title: 'Instructions related to Exam Coupons',
       date: 'December 12-16, 2022',
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi. Integer tempus scelerisque arcu a bibendum. Duis nec elit eget augue porta gravida vitae ut nunc. Fusce ac tellus porttitor, lobortis enim vitae, ultrices lacus. Vivamus placerat turpis metus, ut pellentesque risus venenatis eu. Proin rhoncus laoreet libero, sit amet maximus magna ullamcorper tristique.'
     },
     {
       id: '1',
       title: 'Bus timing and routes in Exams',
       date: 'December 12-16, 2022',
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi. Integer tempus scelerisque arcu a bibendum. Duis nec elit eget augue porta gravida vitae ut nunc. Fusce ac tellus porttitor, lobortis enim vitae, ultrices lacus. Vivamus placerat turpis metus, ut pellentesque risus venenatis eu. Proin rhoncus laoreet libero, sit amet maximus magna ullamcorper tristique.'
     },
     {
       id: '2',
       title: 'Third',
       date: 'December 12-16, 2022',
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi. Integer tempus scelerisque arcu a bibendum. Duis nec elit eget augue porta gravida vitae ut nunc. Fusce ac tellus porttitor, lobortis enim vitae, ultrices lacus. Vivamus placerat turpis metus, ut pellentesque risus venenatis eu. Proin rhoncus laoreet libero, sit amet maximus magna ullamcorper tristique.'
     },
     {
       id: '3',
       title: 'Fourth',
       date: 'December 12-16, 2022',
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi. Integer tempus scelerisque arcu a bibendum. Duis nec elit eget augue porta gravida vitae ut nunc. Fusce ac tellus porttitor, lobortis enim vitae, ultrices lacus. Vivamus placerat turpis metus, ut pellentesque risus venenatis eu. Proin rhoncus laoreet libero, sit amet maximus magna ullamcorper tristique.'
     },
     {
       id: '4',
       title: 'Fifth',
       date: 'December 12-16, 2022',
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi. Integer tempus scelerisque arcu a bibendum. Duis nec elit eget augue porta gravida vitae ut nunc. Fusce ac tellus porttitor, lobortis enim vitae, ultrices lacus. Vivamus placerat turpis metus, ut pellentesque risus venenatis eu. Proin rhoncus laoreet libero, sit amet maximus magna ullamcorper tristique.'
     },
     {
       id: '5',
       title: 'Sixth',
       date: 'December 12-16, 2022',
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi. Integer tempus scelerisque arcu a bibendum. Duis nec elit eget augue porta gravida vitae ut nunc. Fusce ac tellus porttitor, lobortis enim vitae, ultrices lacus. Vivamus placerat turpis metus, ut pellentesque risus venenatis eu. Proin rhoncus laoreet libero, sit amet maximus magna ullamcorper tristique.'
     },
   ];
 
@@ -54,7 +60,12 @@ export default function Announcements({ navigation }) {
             data={DATA}
             keyExtractor={item => item.id}
             renderItem={({item}) =>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={()=> {navigation.navigate('AnnouncementDetails',{
+              title: item.title,
+              desc: item.details
+            })}}
+            >
             <View style={styles.innerview}>
               <Image
                 source={require('../assets/announcement.png')}
