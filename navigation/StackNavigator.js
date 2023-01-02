@@ -8,6 +8,7 @@ import Lost from '../Screens/Lost';
 import Found from '../Screens/Found';
 import BottomTabNavigator from './TabNavigator';
 import Announcements from '../Screens/Announcements';
+import ItemDetails from '../Screens/ItemDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Announcements" component={Announcements} />
         <Stack.Screen name="Lost" component={Lost}/>
         <Stack.Screen name="Found" component={Found} options={{ animation: 'none' }}/>
+        <Stack.Screen name="ItemDetails" component={ItemDetails}/> 
         <Stack.Screen name="Chat" component={BottomTabNavigator} />
         <Stack.Screen name="Profile" component={BottomTabNavigator}/> 
       </Stack.Navigator>

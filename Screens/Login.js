@@ -136,10 +136,12 @@ const styles = StyleSheet.create({
 
   eyeicon: {
     position: 'absolute', right: '2%', alignSelf: 'center', top: 18
-  }, passwordTouchably: {
+  }, 
+  passwordTouchably: {
     justifyContent: 'flex-end', flexDirection: "row", width: "80%",
     marginTop: 7
-  }, grey: { fontSize: 14, color: '#8391A1', fontWeight: 'bold' },
+  }, 
+  grey: { fontSize: 14, color: '#8391A1', fontWeight: 'bold' },
   loginMain: { flex: .8, justifyContent: 'space-around', alignItems: 'center', width: '80%' },
   loginBtn: {
     width: "100%",

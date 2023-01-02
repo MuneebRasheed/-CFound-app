@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground,FlatList } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from '../component/Footer.js';
 import Header from '../component/Header';
 
 export default function Found({ navigation,route }) {

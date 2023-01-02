@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground,FlatList } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from '../component/Footer.js';
 import Header from '../component/Header';
 
 export default function Lost({ navigation,route }) {
@@ -10,28 +9,28 @@ export default function Lost({ navigation,route }) {
           title: 'Rolex Watch lost near cafeteria',
           date: 'Oct 15, 2022',
           description: 'Rolex Gold Watch with black strips',
-          imageurl: "https://5.imimg.com/data5/SELLER/Default/2020/9/EX/VH/QG/26510561/new-product-1000x1000.jpeg"
+          image: "https://5.imimg.com/data5/SELLER/Default/2020/9/EX/VH/QG/26510561/new-product-1000x1000.jpeg"
         },
         {
             id: '1',
             title: 'Sveston Watch lost near A block',
             date: 'Oct 14, 2022',
-            description: 'Sveston Gold Watch with brown strips',
-            imageurl: "https://cdn.shopify.com/s/files/1/0003/5815/4293/products/IMG_3900_1200x.jpg?v=1671108959"
+            description: 'Sveston Gold Watch with brown strips ',
+            image: "https://cdn.shopify.com/s/files/1/0003/5815/4293/products/IMG_3900_1200x.jpg?v=1671108959"
           },
           {
             id: '2',
             title: 'Rolex Watch lost near cafeteria',
             date: 'Oct 12, 2022',
             description: 'Rolex Gold Watch with black strips',
-            imageurl: "https://www.bobswatches.com/rolex-blog/wp-content/uploads/2021/09/Rolex-Watches-buying-guide-1.png"
+            image: "https://www.bobswatches.com/rolex-blog/wp-content/uploads/2021/09/Rolex-Watches-buying-guide-1.png"
           },
           {
             id: '3',
             title: 'Sveston Watch lost near D block',
             date: 'Oct 14, 2022',
-            description: 'Sveston Ostego Emperor hand Watch Black Color ',
-            imageurl: "https://cdn.shopify.com/s/files/1/0003/5815/4293/products/C-SV-9676-2-2_1200x.jpg?v=1637669392"
+            description: 'Sveston Ostego Emperor hand Watch Black Color Sveston Gold Watch with brown strips Sveston Gold Watch with brown strips Sveston Gold Watch with brown strips ',
+            image: "https://cdn.shopify.com/s/files/1/0003/5815/4293/products/C-SV-9676-2-2_1200x.jpg?v=1637669392"
           }
       ];
     function onNavigate (){
@@ -60,14 +59,16 @@ export default function Lost({ navigation,route }) {
                 renderItem={({item}) =>
                 <View style={styles.body}>
                         <Image
-                        source={{ uri: item.imageurl }}
+                        source={{ uri: item.image }}
                         style={[styles.img]}
                         ></Image>
                     <View style= {{padding:'4%',flexShrink: 1}}>
                         <Text style={{color:'white',fontSize:18,marginBottom:'3%'}}>{item.title}</Text>
                         <Text style={{color:'white',fontSize:12,marginBottom:'3%'}}>{item.date}</Text>
-                        <Text style={{color:'grey',fontSize:12}}>{item.description}</Text>
-                        <TouchableOpacity>
+                        <Text style={{color:'grey',fontSize:12}}>{(item.description).length > 40 ? (item.description).slice(0,40) + '...' : (item.description)}</Text>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate('ItemDetails',{title: route.params.title, item: item})}
+                        >
                             <Text style={styles.found}>Found</Text>
                         </TouchableOpacity>
                     </View>
