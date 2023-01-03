@@ -1,31 +1,53 @@
 import { StyleSheet, Text, View, ImageBackground, Image, TextInput, Alert, Pressable, TouchableOpacity, TouchableHighlight } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  useState, useEffect,
+  useLayoutEffect,
+  useCallback
+} from 'react'
 import Input from '../component/Input'
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
+import { auth } from '.././firebase/config'
+
 
 // import { auth } from '../firebase/config';
-import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, query } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, orderBy, query, onSnapshot } from "firebase/firestore";
 // import firestore from '@react-native-firebase/firestore'
-// import { db } from '../firebase/config';
+import { db } from '../firebase/config';
 // import { getAuth, updateProfile } from "firebase/auth";
 //end 
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState("laiba12@gmail.com");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("fa20-bcs-02@cuilahore.edu.pk");
+  const [password, setPassword] = useState("pass12345");
   const [showPassword, setShowPassword] = useState(true);
   ;
+
+  const storeData = async () => {
+    try {
+      let arr = email.split('@');
+
+
+      await AsyncStorage.setItem("userEmail", arr[0]);
+
+    } catch (e) {
+      // saving error
+    }
+  }
 
   const loginUser = () => {
     console.log("email", email);
     console.log(password);
-    firebase.auth().signInWithEmailAndPassword(email, password)
+
+    auth.signInWithEmailAndPassword(email, password)
       .then(data => {
 
-        console.log('firebase return is = ', data)
+        console.log('firebase return is = ', data);
+
+        storeData();
         navigation.navigate("Home");
       }).catch(error => {
         console.log('Catch Error', error)
@@ -61,8 +83,8 @@ export default function Login({ navigation }) {
 
             <View style={styles.loginMain}>
               <TouchableOpacity
-                // onPress={loginUser}
-                onPress={() => {navigation.navigate("Home")}}
+                onPress={loginUser}
+                // onPress={() => {navigation.navigate("Home")}}
                 style={styles.loginBtn}
               >
                 <Text style={styles.loginText}>Login</Text>
