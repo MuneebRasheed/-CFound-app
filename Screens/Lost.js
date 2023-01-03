@@ -75,7 +75,8 @@ export default function Lost({ navigation,route }) {
                 </View>
                 }
             /> 
-            <TouchableOpacity style = {styles.addIcon}>
+            <TouchableOpacity style = {styles.addIcon}
+            onPress = {() =>  navigation.navigate('ItemAdd')}>
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
             </View>

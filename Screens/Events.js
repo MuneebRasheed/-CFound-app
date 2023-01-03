@@ -10,32 +10,57 @@ export default function Events({ navigation }) {
     {
       id: '0',
       title: 'Awareness Program "Neat And Clean"',
+      time: '12 pm',
       date: 'December 12-16, 2022',
+      //link: 'https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-600w-1538520572.jpg',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod semper tincidunt. Morbi vitae pulvinar dolor, sed elementum arcu. Nullam hendrerit neque eu eros scelerisque fringilla. Sed dignissim, enim nec dictum vulputate, massa enim volutpat sapien, et auctor mi enim vel est. Vestibulum tempus, dolor at lobortis tincidunt, ipsum nibh molestie augue, et interdum neque ante eu purus. Vivamus vulputate, ligula bibendum ullamcorper vestibulum, sem leo varius justo, sit amet rutrum magna turpis et nunc. Vivamus egestas mattis tellus, non lacinia nunc vulputate aliquet. Maecenas interdum pharetra ligula a placerat. Suspendisse nec velit dolor. Nam et felis nec elit suscipit interdum at ac lacus. Pellentesque suscipit velit sit amet mattis vehicula. Maecenas maximus nisl id urna vehicula fringilla. Nunc tempus ligula ac fringilla vulputate. Phasellus lacinia nec lorem a lobortis. Praesent a nunc turpis. Maecenas ac molestie diam.    Proin ac orci erat. Donec purus risus, luctus non mi at, fringilla bibendum nisi.',
+      venue:'Comsats lhr',
+
     },
     {
       id: '1',
       title: 'Second Item',
+      time: '12 pm',
       date: 'December 12-16, 2022',
+      //link: 'https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-600w-1538520572.jpg',
+      description: 'Event is to be held in comsats lahorekasjdkasjdlkasjdlkasjlkdasjlkdjla askdjas aldkjaslkd alk laksdjlaks laksjdlka sjlkdj lkasjdlka jldk sajlkdj',
+      venue:'Comsats lhr',
     },
     {
       id: '2',
       title: 'Third',
+      time: '12 pm',
       date: 'December 12-16, 2022',
+      //link: 'https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-600w-1538520572.jpg',
+      description: 'Event is to be held in comsats lahorekasjdkasjdlkasjdlkasjlkdasjlkdjla askdjas aldkjaslkd alk laksdjlaks laksjdlka sjlkdj lkasjdlka jldk sajlkdj',
+      venue:'Comsats lhr',
     },
     {
       id: '3',
       title: 'Fourth',
+      time: '12 pm',
       date: 'December 12-16, 2022',
+      //link: 'https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-600w-1538520572.jpg',
+      description: 'Event is to be held in comsats lahorekasjdkasjdlkasjdlkasjlkdasjlkdjla askdjas aldkjaslkd alk laksdjlaks laksjdlka sjlkdj lkasjdlka jldk sajlkdj',
+      venue:'Comsats lhr',
     },
     {
       id: '4',
       title: 'Fifth',
+      time: '12 pm',
       date: 'December 12-16, 2022',
+      //link: 'https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-600w-1538520572.jpg',
+      description: 'Event is to be held in comsats lahorekasjdkasjdlkasjdlkasjlkdasjlkdjla askdjas aldkjaslkd alk laksdjlaks laksjdlka sjlkdj lkasjdlka jldk sajlkdj',
+      venue:'Comsats lhr',
     },
     {
       id: '5',
       title: 'Sixth',
+      time: '12 pm',
       date: 'December 12-16, 2022',
+      //link: 'https://www.shutterstock.com/image-vector/upcoming-events-isolated-on-white-600w-1538520572.jpg',
+      description: 'Event is to be held in comsats lahorekasjdkasjdlkasjdlkasjlkdasjlkdjla askdjas aldkjaslkd alk laksdjlaks laksjdlka sjlkdj lkasjdlka jldk sajlkdj',
+      venue:'Comsats lhr',
     },
   ];
 
@@ -54,7 +79,14 @@ export default function Events({ navigation }) {
             data={DATA}
             keyExtractor={item => item.id}
             renderItem={({item}) =>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress= {() => navigation.navigate('EventDetails',{
+              title: item.title,
+              desc: item.description,
+              venue: item.venue,
+              date: item.date,
+              time: item.time
+              })}>
             <View style={styles.innerview}>
               <Image
                 source={require('../assets/events.png')}
@@ -70,10 +102,13 @@ export default function Events({ navigation }) {
               </TouchableOpacity>
             }
             />
-            <TouchableOpacity style = {styles.addbuttonopacity}>
+            <TouchableOpacity style = {styles.addbuttonopacity}
+            onPress={()=> {navigation.navigate('EventAdd')}}>
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
       </View>
+      {/* Footer View */}
+      <Footer />
     </View>
   );
 }
@@ -88,13 +123,11 @@ const styles = StyleSheet.create({
     marginBottom:'7%',
     flexDirection:'row',
     borderRadius:15,
-
-
   },
   body: {
-    flex: 0.89,
+    flex: 0.82,
     marginTop:'7%',
-    marginBottom:'2%',
+    marginBottom:'7%',
     alignItems:'center',
     width:'100%'
   },

@@ -6,7 +6,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 
-// import { auth } from '../firebase/config';
+ import { auth } from '../firebase/config';
 import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, query } from "firebase/firestore";
 // import firestore from '@react-native-firebase/firestore'
 // import { db } from '../firebase/config';
@@ -22,7 +22,7 @@ export default function Login({ navigation }) {
   const loginUser = () => {
     console.log("email", email);
     console.log(password);
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(email, password)
       .then(data => {
 
         console.log('firebase return is = ', data)
