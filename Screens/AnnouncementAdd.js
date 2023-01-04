@@ -16,7 +16,7 @@ export default function AnnouncementAdd({ navigation }) {
       // Main VIEW
         <View style={[styles.container]}>
           {/* TOP VIEW */}
-          <Header title='Add an Announcement' navi={() => onNavigate()}/>
+          <Header title='Post Announcement' navi={() => onNavigate()}/>
           {/* Middle view */}
 
           <View style = {styles.body}>
@@ -24,11 +24,11 @@ export default function AnnouncementAdd({ navigation }) {
               <Text style={styles.titletxt}>List a new Announcement</Text>
             </View>
             <View style={styles.items}>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',right:'40%',color:'white'}}>Title:</Text>
+              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Title:</Text>
               <Input placeholder={'Enter title'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',right:'40%',color:'white'}}>Date:</Text>
+              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Date:</Text>
               <Input placeholder={'Enter Date'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',right:'40%',color:'white'}}>Details:</Text>
+              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Details:</Text>
               <Input placeholder={'Enter Details'}/>
             </View>
           </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3D3D3D'
   },
   body: {
-    flex: .8,
+    flex: .7,
     width:'100%',
     marginBottom:'5%'
   },
@@ -59,24 +59,24 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   titletxt:{
-    fontSize:30,
+    fontSize:24,
     fontWeight:'bold',
     color:'white'
   },
   items:{
     flex:.85,
-    alignItems:'center'
+    left:'8%'
   },
   bottom:{
-    flex: .09,
+    flex: .2,
     alignItems:'center',
   },
   addBtn: {
-    width: "55%",
+    width: "80%",
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#DA692F',
-    height: 40,
+    height: '35%',
     borderRadius: 20
   },
   addText: {

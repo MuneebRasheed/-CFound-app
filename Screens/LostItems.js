@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
-import Footer from '../component/Footer';
 import Header from '../component/Header';
 
 export default function LostItems({ navigation }) {

@@ -11,9 +11,6 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 import { auth } from '.././firebase/config'
-
-
-// import { auth } from '../firebase/config';
 import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, orderBy, query, onSnapshot } from "firebase/firestore";
 // import firestore from '@react-native-firebase/firestore'
 import { db } from '../firebase/config';
@@ -69,7 +66,7 @@ export default function Login({ navigation }) {
         <View style={styles.bottom}>
           <View style={styles.bottoTop}>
             <Input placeholder='Enter your email' secureTextEntry={false} setData={setEmail} data={email} />
-            <View style={{ flexDirection: 'row', marginTop: '5%' }}>
+            <View style={{ flexDirection: 'row', marginTop: '3%' }}>
               <Input placeholder='Enter your password' secureTextEntry={showPassword} setData={setPassword} data={password} />
               <Ionicons style={styles.eyeicon} name="eye-outline" size={20}
                 onPress={() => { setShowPassword(pre => !pre) }} />
@@ -158,10 +155,11 @@ const styles = StyleSheet.create({
 
   eyeicon: {
     position: 'absolute', right: '2%', alignSelf: 'center', top: 18
-  }, passwordTouchably: {
-    justifyContent: 'flex-end', flexDirection: "row", width: "80%",
-    marginTop: 7
-  }, grey: { fontSize: 14, color: '#8391A1', fontWeight: 'bold' },
+  }, 
+  passwordTouchably: {
+    justifyContent: 'flex-end', flexDirection: "row", width: "80%"
+  }, 
+  grey: { fontSize: 14, color: '#8391A1', fontWeight: 'bold' },
   loginMain: { flex: .8, justifyContent: 'space-around', alignItems: 'center', width: '80%' },
   loginBtn: {
     width: "100%",
