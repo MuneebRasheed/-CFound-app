@@ -10,7 +10,7 @@ import {doc, setDoc, updateDoc} from 'firebase/firestore';
 import react,{useEffect} from 'react';
 
 
-export default function ItemAdd({ navigation }) {
+export default function FoundItemAdd({ navigation }) {
   const [time,settime] = useState('1')
   const [tme,settme] = useState('AM');
   const [image,setImage] = useState(null)
@@ -91,16 +91,16 @@ const uploadImage = async () => {
 
           <View style = {styles.body}>
             <View style = {styles.titleView}>
-              <Text style={styles.titletxt}>Lost Something?</Text>
+              <Text style={styles.titletxt}>Found Something?</Text>
             </View>
             <View style={styles.items}>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Title:</Text>
+              <Text style={{margin:'1%',fontSize:15,fontWeight:'bold',color:'white'}}>Title:</Text>
               <Input placeholder={'Enter title'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Date:</Text>
+              <Text style={{margin:'1%',fontSize:15,fontWeight:'bold',color:'white'}}>Date:</Text>
               <Input placeholder={'Enter Date'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Description:</Text>
+              <Text style={{margin:'1%',fontSize:15,fontWeight:'bold',color:'white'}}>Description:</Text>
               <Input placeholder={'Enter Details'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Add image:</Text>
+              <Text style={{margin:'1%',fontSize:15,fontWeight:'bold',color:'white'}}>Add image:</Text>
               <View style= {{width:'80%',backgroundColor:'white',padding:'3%',borderRadius:8}} >
                 <TouchableOpacity style = {styles.addIcon} onPress={pickImage}>
                   <Ionicons style={{color: 'black'}} name="add" size={38} />
@@ -115,6 +115,7 @@ const uploadImage = async () => {
               <Text style={styles.addText}>Post</Text>
             </TouchableOpacity>
           </View>
+          
         </View>
     );
 }
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3D3D3D'
   },
   body: {
-    flex: .8,
+    flex: .7,
     width:'100%',
     marginBottom:'5%'
   },
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
    left:'8%'
   },
   bottom:{
-    flex: .09,
+    flex: .2,
     alignItems:'center',
   },
   addBtn: {
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#DA692F',
-    height: '70%',
+    height: '35%',
     borderRadius: 20
   },
   addText: {

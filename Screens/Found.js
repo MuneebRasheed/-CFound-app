@@ -42,11 +42,11 @@ export default function Found({ navigation,route }) {
           <Header title={route.params.title} navi={() => onNavigate()}/>
         {/* BODY */}
             <View style={styles.bodyTop}>
-                <TouchableOpacity style={styles.button}
+                <TouchableOpacity style={styles.buttonLost}
                 onPress= {() => navigation.navigate('Lost',{title: route.params.title})}>
                     <Text style={styles.buttonText}>Lost</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.buttonFound}>
                     <Text style={styles.buttonText}>Found</Text>
                 </TouchableOpacity>
             </View>
@@ -62,18 +62,21 @@ export default function Found({ navigation,route }) {
                         source={{ uri: item.imageurl }}
                         style={[styles.img]}
                         ></Image>
-                    <View style= {{padding:'4%',flexShrink: 1}}>
+                   <TouchableOpacity style= {{padding:'4%',flexShrink: 1}}
+                    onPress={() => navigation.navigate('ItemDetails',{title: route.params.title, item: item})}
+                    >
                         <Text style={{color:'white',fontSize:18,marginBottom:'3%'}}>{item.title}</Text>
                         <Text style={{color:'white',fontSize:12,marginBottom:'3%'}}>{item.date}</Text>
-                        <Text style={{color:'grey',fontSize:12}}>{item.description}</Text>
+                        <Text style={{color:'grey',fontSize:12}}>{(item.description).length > 40 ? (item.description).slice(0,40) + '...' : (item.description)}</Text>
                         <TouchableOpacity>
                             <Text style={styles.found}>Claim</Text>
                         </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 }
             /> 
-            <TouchableOpacity style = {styles.addIcon}>
+            <TouchableOpacity style = {styles.addIcon}
+             onPress = {() =>  navigation.navigate('FoundItemAdd')}>
             <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
             </View>
@@ -94,13 +97,20 @@ const styles = StyleSheet.create({
     justifyContent:'space-evenly',
     alignItems:'center'
   },
-  button: {
+  buttonFound: {
     backgroundColor:'#242527',
     padding:'2%',
     width:'36%',
     borderRadius:10,
     borderWidth:1,
     borderColor:'#ce5c2b'
+  },
+  buttonLost: {
+    backgroundColor:'#242527',
+    padding:'2%',
+    width:'36%',
+    borderRadius:10,
+    borderWidth:1,
   },
   buttonText: {
     color:'white',

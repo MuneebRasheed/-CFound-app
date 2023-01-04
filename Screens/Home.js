@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from '../component/Footer.js';
 export const add = (a, b) => {
   return a + b;
 }
@@ -25,21 +24,21 @@ export default function Home({ navigation }) {
       <View style={styles.body}>
         <TouchableOpacity style={styles.imgView}
           onPress={() => navigation.navigate('LostItems')}>
-          <ImageBackground
+          <Image
             style={styles.img}
             source={require('../assets/img1.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.imgView}
         onPress={() => navigation.navigate('Announcements')}>
-          <ImageBackground
+          <Image
             style={styles.img}
             source={require('../assets/img2.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.imgView}
           onPress={() => navigation.navigate('Events')}>
-          <ImageBackground
+          <Image
             style={styles.img}
             source={require('../assets/img3.png')}
             />
@@ -94,7 +93,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 0.81,
-    backgroundColor: '#3D3D3D',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -104,6 +102,7 @@ const styles = StyleSheet.create({
   },
   imgView: {
     width: '80%',
-    height: '20%'
+    height: '20%',
+    backgroundColor:'#3D3D3D'
   }
 });

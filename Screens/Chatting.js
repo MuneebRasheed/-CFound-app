@@ -1,5 +1,11 @@
 import { View, Text, Dimensions } from 'react-native'
-import React, { useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {
+    useState, useEffect,
+    useLayoutEffect,
+    useCallback
+} from 'react'
 import { KeyboardAvoidingView, ImageBackground, StyleSheet, Image, TextInput, TouchableOpacity, FlatList, Animated, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,68 +15,120 @@ import { MaterialIcons } from '@expo/vector-icons';
 // import { SendSmsOptions } from 'react-native-sms';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { auth } from '../firebase/config'
-import { collection, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, getDocs, where, query, } from "firebase/firestore";
-// import firestore from '@react-native-firebase/firestore'
+import { collection, doc, setDoc, getDocs, where, orderBy, query, onSnapshot, docs, snapshot, getFirestore, Timestamp, addDoc } from "firebase/firestore";
 import { db } from '../firebase/config';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
-
-
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 const Chatting = ({ route }) => {
 
-    // console.log('Maryam and Muneeb',route.params.item)
+
+    console.log('Maryam and Muneeb', route.params)
     // const image = { };
-    const [value, setValue] = useState('');
+    const [input, setInput] = useState('');
+    const [messages, setMessages] = useState([]);
+    const [currentEmail, setCurrentEmail] = useState('');
     const { width } = Dimensions.get("screen")
     const handleChange = (text) => {
-        setValue(text)
+        setInput(text);
+    };
+
+    const getData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('userEmail')
+            if (value !== null) {
+                setCurrentEmail(value);
+                console.log("localstrss", value)
+            }
+        } catch (e) {
+            // error reading value
+        }
     }
+
+    useEffect(() => {
+        getData();
+        Get();
+    }, [currentEmail])
+    useLayoutEffect(() => {
+
+        const collectionRef = collection(db, 'chats');
+        // console.log("collectionRef", collectionRef);
+        // const q = query(collectionRef, orderBy('time', 'desc'));
+        const unsubscribe = onSnapshot(collectionRef, querySnapshot => {
+            console.log('querySnapshot unsusbscribe', querySnapshot?.docs);
+
+            // setMessages(
+            //     querySnapshot.docs.map(doc => ({
+            //         text: doc.data().text,
+            //         user: doc.data().user
+            //     }))
+            // );
+
+            Get();
+            // getdata();
+            return unsubscribe;
+        })
+
+    }, []);
+
+
+
+    const onSend = useCallback((messages = []) => {
+
+        console.log("muneeb");
+        const chat = collection(db, "chats");
+        setMessages(pre => [
+            ...pre,
+            {
+                text: input,
+                time: Timestamp.fromDate(new Date()),
+                groupId: route.params.id,
+                senderId: currentEmail
+            }
+
+        ]);
+        console.log("after set message");
+
+        // setMessages([...messages, ...messages]);
+        // const { _id, createdAt, text, user } = messages[0];
+        console.log("after set mdsd");
+        Create();
+    }, []);
 
     async function Create() {
         console.log("create");
         //Reciever Id is come here
-        const citiesRef = collection(db, "muneeb");
+        // const citiesRef = collection(db, "chats");
 
-        await setDoc(doc(citiesRef, "maryam"), {
-            message: [{
-                sendBy: "muneeb",
-                message: 'i am muneeb',
-            }, {
-                sendBy: "maryam",
-                message: 'i am maryam',
-            }]
+        const docRef = await addDoc(collection(db, "chats"), {
+            text: input,
+            time: Timestamp.fromDate(new Date()),
+            groupId: route.params.id,
+            senderId: currentEmail
         });
+
+
     }
 
 
     async function Get() {
-        // const docRef = doc(db, "chat", "SF|F");
-        // const docSnap = await getDoc(docRef);
-
-        // if (docSnap.exists()) {
-        //     console.log("Document data:", docSnap.data());
-        // } else {
-        //     // doc.data() will be undefined in this case
-        //     console.log("No such document!");
-        // }
-
-
-        const q = query(collection(db, "chat"), where('regions', 'array-contains',
-            'west_coast'));
-
+        let arr = [];
+        const q = query(collection(db, "chats"), where('groupId', "==", route.params.id));
         const querySnapshot = await getDocs(q);
         console.log("Muneeb");
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+            arr.push(doc.data());
+            // console.log(doc.id, " => ", doc.data());
         });
-
-
+        console.log("Array", arr);
+        setMessages(arr);
     }
+
+
+
     return (
 
         <View style={{ flex: 1 }}>
-            {console.log("Text", value)}
+            {/* {console.log("Text", value)} */}
             <View style={styles.chattingHeader} >
                 <View style={styles.firsthalf}>
                     <View style={styles.profileandarrow}>
@@ -79,7 +137,7 @@ const Chatting = ({ route }) => {
                             source={require('../assets/profile.jpeg')} />
                     </View>
                     <View style={styles.nameseen}>
-                        {<Text style={styles.name} >{"Muneeb"}</Text>}
+                        {<Text style={styles.name} >{route?.params?.name}</Text>}
                         {<Text style={{ color: "white", }}> last seen today at 4:09 pm</Text>}
                     </View>
                 </View>
@@ -95,43 +153,35 @@ const Chatting = ({ route }) => {
                 <ImageBackground source={require("../assets/profile.jpeg")} resizeMode="cover"
                     style={styles.image} imageStyle={{ opacity: 0.3 }}>
                     <ScrollView style={{ marginBottom: 60 }}>
-                        <View style={styles.SenderMsg}>
-                            <Text>Hello </Text>
-                            <View style={styles.timeandcheck}>
-                                <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
-                                {/* <Ionicons name="checkmark-done" size={17} color="#00BFFF" /> */}
+                        {console.log("dasdas", currentEmail)}
+                        {
+                            messages.map(val => {
+                                if (val.senderId == currentEmail) {
+                                    return (
+                                        <View style={styles.SenderMsg}>
+                                            <Text>{val.text} </Text>
+                                            <View style={styles.timeandcheck}>
+                                                <Text style={{ fontSize: 10, marginRight: 5 }}> 3:00 PM</Text>
+                                                {/* <Ionicons name="checkmark-done" size={17} color="#00BFFF" /> */}
 
-                            </View>
+                                            </View>
+                                        </View>
 
+                                    )
+                                } else {
+                                    return (
+                                        <View style={styles.ReceiverMsg}>
+                                            <View style={styles.time}>
+                                                <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
+                                            </View>
+                                            <Text>{val.text}</Text>
+                                        </View>
 
-                        </View>
+                                    )
+                                }
+                            })
+                        }
 
-
-                        <View style={styles.ReceiverMsg}>
-                            <View style={styles.time}>
-                                <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
-                            </View>
-                            <Text>How are you?</Text>
-                        </View>
-
-                        <View style={styles.SenderMsg}>
-                            <Text>I am fine  </Text>
-                            <View style={styles.timeandcheck}>
-                                <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
-                                {/* <Ionicons name="checkmark-done" size={17} color="#00BFFF" /> */}
-
-                            </View>
-
-
-                        </View>
-                        <View style={styles.SenderMsg}>
-                            <Text>I am fine  </Text>
-                            <View style={styles.timeandcheck}>
-                                <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
-                                {/* <Ionicons name="checkmark-done" size={17} color="#00BFFF" /> */}
-
-                            </View>
-                        </View>
 
                     </ScrollView>
 
@@ -139,10 +189,9 @@ const Chatting = ({ route }) => {
                         <View style={{ padding: 4, width: width - 40, maxHeight: 50, }}>
                             <TextInput style={styles.textinput}
                                 placeholder="Type message here"
-                                multiline={true}
-                                numberOfLines={10}
-                                value={value}
-                                onChangeText={handleChange}
+
+                                value={input}
+                                onChangeText={val => { setInput(val) }}
                             // defaultValue={"Maryam" 
                             />
                             <View style={styles.EmojiIcon}>
@@ -152,9 +201,8 @@ const Chatting = ({ route }) => {
                                 <FontAwesome5 name="camera" size={24} color="#8D918D" />
                             </View>
                         </View>
-                        <TouchableOpacity style={styles.VoiceIcon} onPress={() => { Create() }}>
+                        <TouchableOpacity style={styles.VoiceIcon} onPress={() => { onSend(); }}>
                             <Ionicons name="send" size={20} color="white" />
-
                         </TouchableOpacity>
 
                     </View>
