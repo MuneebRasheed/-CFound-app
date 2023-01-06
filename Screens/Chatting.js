@@ -17,24 +17,27 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { collection, doc, setDoc, getDocs, where, orderBy, query, onSnapshot, docs, snapshot, getFirestore, Timestamp, addDoc } from "firebase/firestore";
 import { db } from '../firebase/config';
-import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
+import Input from '../component/Input';
 const Chatting = ({ route }) => {
 
 
-    console.log('Maryam and Muneeb', route.params)
-    // const image = { };
-    const [input, setInput] = useState('');
+
+    const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [currentEmail, setCurrentEmail] = useState('');
     const { width } = Dimensions.get("screen")
-    const handleChange = (text) => {
-        setInput(text);
-    };
+    useEffect(() => {
+        getData();
+        Get();
+        console.log("muneebs");
+    }, [])
+
 
     const getData = async () => {
         try {
-            const value = await AsyncStorage.getItem('userEmail')
-            if (value !== null) {
+            const value = await AsyncStorage.getItem('userEmail');
+            console.log("before", value)
+            if (value != null) {
                 setCurrentEmail(value);
                 console.log("localstrss", value)
             }
@@ -43,29 +46,29 @@ const Chatting = ({ route }) => {
         }
     }
 
-    useEffect(() => {
-        getData();
-        Get();
-    }, [currentEmail])
     useLayoutEffect(() => {
-
         const collectionRef = collection(db, 'chats');
         // console.log("collectionRef", collectionRef);
-        // const q = query(collectionRef, orderBy('time', 'desc'));
-        const unsubscribe = onSnapshot(collectionRef, querySnapshot => {
-            console.log('querySnapshot unsusbscribe', querySnapshot?.docs);
+        const q = query(collectionRef, orderBy('time', 'desc'));
+        const unsubscribe = onSnapshot(q, querySnapshot => {
+            // console.log('querySnapshot unsusbscribe', querySnapshot?.docs);
 
             // setMessages(
             //     querySnapshot.docs.map(doc => ({
             //         text: doc.data().text,
-            //         user: doc.data().user
+            //         time: doc.data().time,
+            //         groupId: doc.data().groupId,
+            //         senderId: doc.data().senderId
             //     }))
             // );
 
-            Get();
+
             // getdata();
             return unsubscribe;
         })
+        Get();
+        console.log("getete")
+
 
     }, []);
 
@@ -74,7 +77,7 @@ const Chatting = ({ route }) => {
     const onSend = useCallback((messages = []) => {
 
         console.log("muneeb");
-        const chat = collection(db, "chats");
+        // const chat = collection(db, "chats");
         setMessages(pre => [
             ...pre,
             {
@@ -85,25 +88,38 @@ const Chatting = ({ route }) => {
             }
 
         ]);
-        console.log("after set message");
+        // console.log("after set message");
 
         // setMessages([...messages, ...messages]);
         // const { _id, createdAt, text, user } = messages[0];
-        console.log("after set mdsd");
+        // console.log("after set mdsd");
         Create();
     }, []);
 
     async function Create() {
-        console.log("create");
-        //Reciever Id is come here
-        // const citiesRef = collection(db, "chats");
+        setMessages(pre => [
+            ...pre,
+            {
+                text: input,
+                time: Timestamp.fromDate(new Date()),
+                groupId: route.params.id,
+                senderId: currentEmail
+            }
 
-        const docRef = await addDoc(collection(db, "chats"), {
-            text: input,
-            time: Timestamp.fromDate(new Date()),
-            groupId: route.params.id,
-            senderId: currentEmail
-        });
+        ]);
+
+        if (currentEmail != "") {
+            const docRef = await addDoc(collection(db, "chats"), {
+                text: input,
+                time: Timestamp.fromDate(new Date()),
+                groupId: route.params.id,
+                senderId: currentEmail
+            })
+        } else {
+            console.log("Is something");
+        }
+
+        setInput("");
 
 
     }
@@ -111,17 +127,22 @@ const Chatting = ({ route }) => {
 
     async function Get() {
         let arr = [];
+        console.log("i am here to set");
         const q = query(collection(db, "chats"), where('groupId', "==", route.params.id));
         const querySnapshot = await getDocs(q);
-        console.log("Muneeb");
+        // console.log("Muneeb");
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             arr.push(doc.data());
             // console.log(doc.id, " => ", doc.data());
         });
-        console.log("Array", arr);
-        setMessages(arr);
+        // console.log("Array", arr);
+        if (arr.length > 0) {
+            setMessages(arr);
+        }
+
     }
+
 
 
 
@@ -153,12 +174,12 @@ const Chatting = ({ route }) => {
                 <ImageBackground source={require("../assets/profile.jpeg")} resizeMode="cover"
                     style={styles.image} imageStyle={{ opacity: 0.3 }}>
                     <ScrollView style={{ marginBottom: 60 }}>
-                        {console.log("dasdas", currentEmail)}
+                        {/* {console.log("dasdas", currentEmail)} */}
                         {
-                            messages.map(val => {
-                                if (val.senderId == currentEmail) {
+                            messages.map((val, index) => {
+                                if (val.senderId != currentEmail) {
                                     return (
-                                        <View style={styles.SenderMsg}>
+                                        <View style={styles.SenderMsg} key={index}>
                                             <Text>{val.text} </Text>
                                             <View style={styles.timeandcheck}>
                                                 <Text style={{ fontSize: 10, marginRight: 5 }}> 3:00 PM</Text>
@@ -170,7 +191,7 @@ const Chatting = ({ route }) => {
                                     )
                                 } else {
                                     return (
-                                        <View style={styles.ReceiverMsg}>
+                                        <View style={styles.ReceiverMsg} key={index}>
                                             <View style={styles.time}>
                                                 <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
                                             </View>
@@ -187,13 +208,8 @@ const Chatting = ({ route }) => {
 
                     <View style={{ flexDirection: "row", position: 'absolute', bottom: 0 }}>
                         <View style={{ padding: 4, width: width - 40, maxHeight: 50, }}>
-                            <TextInput style={styles.textinput}
-                                placeholder="Type message here"
 
-                                value={input}
-                                onChangeText={val => { setInput(val) }}
-                            // defaultValue={"Maryam" 
-                            />
+                            <Input setData={setInput} data={input} />
                             <View style={styles.EmojiIcon}>
                                 <Ionicons name="happy-outline" size={24} color="#8D918D" /></View>
                             <View style={styles.ClipandCamera}>
@@ -201,7 +217,7 @@ const Chatting = ({ route }) => {
                                 <FontAwesome5 name="camera" size={24} color="#8D918D" />
                             </View>
                         </View>
-                        <TouchableOpacity style={styles.VoiceIcon} onPress={() => { onSend(); }}>
+                        <TouchableOpacity style={styles.VoiceIcon} onPress={Create}>
                             <Ionicons name="send" size={20} color="white" />
                         </TouchableOpacity>
 
