@@ -41,8 +41,8 @@ const Chat = ({ navigation }) => {
     useLayoutEffect(() => {
         const collectionRef = collection(db, 'groups');
         // console.log("collectionRef", collectionRef);
-        // const q = query(collectionRef, orderBy('created_At', 'desc'));
-        const unsubscribe = onSnapshot(collectionRef, querySnapshot => {
+        const q = query(collectionRef, orderBy('time', 'desc'));
+        const unsubscribe = onSnapshot(q, querySnapshot => {
             console.log('querySnapshot unsusbscribe', querySnapshot?.docs[1]?.data());
 
             // setChatGroups(
@@ -53,10 +53,11 @@ const Chat = ({ navigation }) => {
             //         uri: doc.data().uri
             //     }))
             // );
-            Get();
+
             // getdata();
             return unsubscribe;
         })
+        Get();
     }, []);
 
 
@@ -74,7 +75,10 @@ const Chat = ({ navigation }) => {
             console.log("muneebebdadsdas")
         });
         console.log("Array", arr);
-        setChatGroups(arr);
+        if (arr.length > 0) {
+            setChatGroups(arr);
+        }
+
     }
     return (
         <View style={{ flex: 1, backgroundColor: 'white', }} >

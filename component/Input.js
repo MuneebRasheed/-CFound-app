@@ -3,11 +3,13 @@ import React from 'react'
 
 const Input = ({ placeholder, secureTextEntry, setData, data }) => {
     return (
-        <TextInput style={styles.input}
+        <TextInput
+            style={styles.input}
             placeholder={placeholder}
             secureTextEntry={secureTextEntry}
             onChangeText={setData}
-            value={data} />
+            value={data}
+        />
     )
 }
 
