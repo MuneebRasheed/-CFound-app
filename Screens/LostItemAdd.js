@@ -11,12 +11,12 @@ import react,{useEffect} from 'react';
 
 
 export default function LostItemAdd({ navigation }) {
-  const [time,settime] = useState('1')
-  const [tme,settme] = useState('AM');
   const [image,setImage] = useState(null)
+
   useEffect(()=>{
     uploadImage();
-},[image])
+  },[image])
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,

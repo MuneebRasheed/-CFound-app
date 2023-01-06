@@ -1,24 +1,58 @@
 import { StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const Btn =({myAlignment}) => {
-            if (myAlignment == 'top'){
+export default function Button({myAlignment}) {
+
+  // if(myAlignment == 'top') {
+  //   return(
+  //   <TouchableOpacity style = {styles.Top}>
+  //     <Text style = {styles.text}>abc</Text>
+  //   </TouchableOpacity>
+  //   );
+  // }
+  // else if(myAlignment == 'left') {
+  //   return(
+  //     <TouchableOpacity style = {styles.Left}>
+  //       <Text style = {styles.text}>abc</Text>
+  //     </TouchableOpacity>
+  //     );
+  // }
+  // else if(myAlignment == 'right') {
+  //   return(
+  //     <TouchableOpacity style = {styles.Right}>
+  //       <Text style = {styles.text}>abc</Text>
+  //     </TouchableOpacity>
+  //     );
+  // }
+  // else if(myAlignment == 'bottom') {
+  //   return(
+  //     <TouchableOpacity style = {styles.Bottom}>
+  //       <Text style = {styles.text}>abc</Text>
+  //     </TouchableOpacity>
+  //     );
+  // }
+    
+
+  return (
+            myAlignment == 'top' ? (
                 <TouchableOpacity style = {styles.Top}>
                 <Text style = {styles.text}>abc</Text>
               </TouchableOpacity>
-            }
-            else if(myAlignment == 'left')
-                <TouchableOpacity style = {styles.Left}>
-                <Text style = {styles.text}>abc</Text>
+            ) : myAlignment == 'left' ? (
+              <TouchableOpacity style = {styles.Left}>
+              <Text style = {styles.text}>abc</Text>
               </TouchableOpacity>
-            else if(myAlignment == 'right')
-             <TouchableOpacity style = {styles.Right}>
-             <Text style = {styles.text}>abc</Text>
-           </TouchableOpacity>
-            else if(myAlignment == 'bottom')
-            <TouchableOpacity style = {styles.Bottom}>
-            <Text style = {styles.text}>abc</Text>
-          </TouchableOpacity>
-            
+            ) :  myAlignment == 'right' ? (
+              <TouchableOpacity style = {styles.Right}>
+              <Text style = {styles.text}>abc</Text>
+              </TouchableOpacity>
+            ): myAlignment == 'bottom' ? (
+              <TouchableOpacity style = {styles.Bottom}>
+              <Text style = {styles.text}>abc</Text>
+            </TouchableOpacity>
+            ) : <TouchableOpacity style = {styles.Bottom}>
+              <Text style = {styles.text}>abc</Text>
+            </TouchableOpacity>                
+  );           
 }
 const styles = StyleSheet.create({
     Top: {
@@ -47,7 +81,7 @@ const styles = StyleSheet.create({
         width: 50,
         height:25,
         position:'absolute',
-        bottom:30
+        bottom:'7%'
       },
       text:{
         fontSize:20,
@@ -56,4 +90,3 @@ const styles = StyleSheet.create({
       }
 });
 
-export default Btn;
