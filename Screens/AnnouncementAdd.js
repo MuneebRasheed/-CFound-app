@@ -1,46 +1,64 @@
 
-import { StyleSheet, Text, View, TouchableOpacity,Alert} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import Header from '../component/Header';
 import Input from '../component/Input';
 import { useState } from 'react';
 
-
+import { collection, doc, setDoc, getDocs, where, orderBy, query, onSnapshot, docs, snapshot, getFirestore, Timestamp, addDoc } from "firebase/firestore";
+import { db } from '../firebase/config';
 
 export default function AnnouncementAdd({ navigation }) {
-  const [time,settime] = useState('1')
-  const [tme,settme] = useState('AM')
-  function onNavigate (){
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('');
+  function onNavigate() {
     navigation.pop()
   }
-    return (
-      // Main VIEW
-        <View style={[styles.container]}>
-          {/* TOP VIEW */}
-          <Header title='Post Announcement' navi={() => onNavigate()}/>
-          {/* Middle view */}
 
-          <View style = {styles.body}>
-            <View style = {styles.titleView}>
-              <Text style={styles.titletxt}>List a new Announcement</Text>
-            </View>
-            <View style={styles.items}>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Title:</Text>
-              <Input placeholder={'Enter title'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Date:</Text>
-              <Input placeholder={'Enter Date'}/>
-              <Text style={{margin:'2%',fontSize:15,fontWeight:'bold',color:'white'}}>Details:</Text>
-              <Input placeholder={'Enter Details'}/>
-            </View>
-          </View>
-          <View style = {styles.bottom}>
-            <TouchableOpacity
-            onPress={()=> {Alert.alert('pressed')}}
-            style={styles.addBtn}>
-              <Text style={styles.addText}>Add</Text>
-            </TouchableOpacity>
-          </View>
+  async function Create() {
+    console.log("create");
+    //Reciever Id is come here
+    // const citiesRef = collection(db, "chats");
+
+    const docRef = await addDoc(collection(db, "Announcment"), {
+      Title: title,
+      time: (new Date()).toString(),
+      Description: description,
+
+    });
+
+    Alert.alert("announcment is created");
+
+
+  }
+  return (
+    // Main VIEW
+    <View style={[styles.container]}>
+      {/* TOP VIEW */}
+      <Header title='Post Announcement' navi={() => onNavigate()} />
+      {/* Middle view */}
+
+      <View style={styles.body}>
+        <View style={styles.titleView}>
+          <Text style={styles.titletxt}>List a new Announcement</Text>
         </View>
-    );
+        <View style={styles.items}>
+          <Text style={{ margin: '2%', fontSize: 15, fontWeight: 'bold', color: 'white' }}>Title:</Text>
+          <Input placeholder={'Enter title'} data={title} setData={setTitle} />
+          <Text style={{ margin: '2%', fontSize: 15, fontWeight: 'bold', color: 'white' }}>Date:</Text>
+          <Input placeholder={'Enter Date'} />
+          <Text style={{ margin: '2%', fontSize: 15, fontWeight: 'bold', color: 'white' }}>Details:</Text>
+          <Input placeholder={'Enter Details'} data={description} setData={setDescription} />
+        </View>
+      </View>
+      <View style={styles.bottom}>
+        <TouchableOpacity
+          onPress={() => { Create(); }}
+          style={styles.addBtn}>
+          <Text style={styles.addText}>Add</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -50,26 +68,26 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: .7,
-    width:'100%',
-    marginBottom:'5%'
+    width: '100%',
+    marginBottom: '5%'
   },
-  titleView:{
-    flex:.15,
-    alignItems:'center',
-    justifyContent:'center',
+  titleView: {
+    flex: .15,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  titletxt:{
-    fontSize:24,
-    fontWeight:'bold',
-    color:'white'
+  titletxt: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white'
   },
-  items:{
-    flex:.85,
-    left:'8%'
+  items: {
+    flex: .85,
+    left: '8%'
   },
-  bottom:{
+  bottom: {
     flex: .2,
-    alignItems:'center',
+    alignItems: 'center',
   },
   addBtn: {
     width: "80%",

@@ -17,11 +17,43 @@ import { db } from '../firebase/config';
 // import { getAuth, updateProfile } from "firebase/auth";
 //end 
 
+
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("fa20-bcs-02@cuilahore.edu.pk");
   const [password, setPassword] = useState("pass12345");
   const [showPassword, setShowPassword] = useState(true);
   ;
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('userEmail');
+
+      if (value) {
+        console.log("value found11", value)
+        return true;
+      }
+      else {
+        console.log("value found11 fakle", value)
+        return false
+      }
+    } catch (e) {
+      // error reading value
+    }
+  }
+
+  useEffect(() => {
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      // The screen is focused
+      // Call any action
+      if (getData()) {
+        console.log("we move backward");
+      }
+
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
 
   const storeData = async () => {
     try {
@@ -155,10 +187,10 @@ const styles = StyleSheet.create({
 
   eyeicon: {
     position: 'absolute', right: '2%', alignSelf: 'center', top: 18
-  }, 
+  },
   passwordTouchably: {
     justifyContent: 'flex-end', flexDirection: "row", width: "80%"
-  }, 
+  },
   grey: { fontSize: 14, color: '#8391A1', fontWeight: 'bold' },
   loginMain: { flex: .8, justifyContent: 'space-around', alignItems: 'center', width: '80%' },
   loginBtn: {

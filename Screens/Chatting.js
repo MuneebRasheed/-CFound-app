@@ -32,7 +32,7 @@ const Chatting = ({ route }) => {
         console.log("muneebs");
     }, [])
 
-
+    let ti;
     const getData = async () => {
         try {
             const value = await AsyncStorage.getItem('userEmail');
@@ -47,10 +47,10 @@ const Chatting = ({ route }) => {
     }
 
     useLayoutEffect(() => {
-        const collectionRef = collection(db, 'chats');
+        const collectionRef = collection(db, route.params.id);
         // console.log("collectionRef", collectionRef);
-        const q = query(collectionRef, orderBy('time', 'desc'));
-        const unsubscribe = onSnapshot(q, querySnapshot => {
+        // const q = query(collectionRef, orderBy('time', 'desc'));
+        const unsubscribe = onSnapshot(collectionRef, querySnapshot => {
             // console.log('querySnapshot unsusbscribe', querySnapshot?.docs);
 
             // setMessages(
@@ -109,9 +109,9 @@ const Chatting = ({ route }) => {
         ]);
 
         if (currentEmail != "") {
-            const docRef = await addDoc(collection(db, "chats"), {
+            const docRef = await addDoc(collection(db, route.params.id), {
                 text: input,
-                time: Timestamp.fromDate(new Date()),
+                time: new Date(),
                 groupId: route.params.id,
                 senderId: currentEmail
             })
@@ -128,7 +128,7 @@ const Chatting = ({ route }) => {
     async function Get() {
         let arr = [];
         console.log("i am here to set");
-        const q = query(collection(db, "chats"), where('groupId', "==", route.params.id));
+        const q = query(collection(db, route.params.id), orderBy("time"));
         const querySnapshot = await getDocs(q);
         // console.log("Muneeb");
         querySnapshot.forEach((doc) => {
@@ -180,9 +180,10 @@ const Chatting = ({ route }) => {
                                 if (val.senderId != currentEmail) {
                                     return (
                                         <View style={styles.SenderMsg} key={index}>
-                                            <Text>{val.text} </Text>
+
+                                            <Text >{val.text} </Text>
                                             <View style={styles.timeandcheck}>
-                                                <Text style={{ fontSize: 10, marginRight: 5 }}> 3:00 PM</Text>
+                                                <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00pm</Text>
                                                 {/* <Ionicons name="checkmark-done" size={17} color="#00BFFF" /> */}
 
                                             </View>
@@ -195,7 +196,7 @@ const Chatting = ({ route }) => {
                                             <View style={styles.time}>
                                                 <Text style={{ fontSize: 10, marginRight: 5 }}> 4:00 PM</Text>
                                             </View>
-                                            <Text>{val.text}</Text>
+                                            <Text style={{ color: 'white' }}>{val.text}</Text>
                                         </View>
 
                                     )
@@ -209,7 +210,13 @@ const Chatting = ({ route }) => {
                     <View style={{ flexDirection: "row", position: 'absolute', bottom: 0 }}>
                         <View style={{ padding: 4, width: width - 40, maxHeight: 50, }}>
 
-                            <Input setData={setInput} data={input} />
+                            {/* <Input setData={setInput} data={input} /> */}
+                            <TextInput style={styles.textinput}
+                                placeholder="Type here"
+                                onChangeText={setInput}
+                                value={input}>
+
+                            </TextInput>
                             <View style={styles.EmojiIcon}>
                                 <Ionicons name="happy-outline" size={24} color="#8D918D" /></View>
                             <View style={styles.ClipandCamera}>
@@ -302,7 +309,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 10,
         paddingBottom: 10,
-        backgroundColor: "#dcf8c6",
+        backgroundColor: "#242527",
         // minWidth:"20%",
         maxWidth: "50%",
         padding: 10,

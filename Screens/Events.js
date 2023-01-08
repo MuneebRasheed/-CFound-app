@@ -3,9 +3,45 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react
 import Footer from '../component/Footer';
 import Header from '../component/Header';
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import { collection, doc, setDoc, getDocs, where, orderBy, query, onSnapshot, docs, snapshot, getFirestore, Timestamp, addDoc } from "firebase/firestore";
+import { db } from '../firebase/config';
+import {
+  useState, useEffect,
+  useLayoutEffect,
+  useCallback
+} from 'react'
 
 export default function Events({ navigation }) {
+  const [postData, setPostData] = useState([]);
+  useEffect(() => {
+    Get();
+  }, [])
+  useLayoutEffect(() => {
+    const collectionRef = collection(db, 'Events');
+    const unsubscribe = onSnapshot(collectionRef, querySnapshot => {
+      console.log('querySnapshot unsusbscribe', querySnapshot?.docs);
+      Get();
+      return unsubscribe;
+    })
+
+  }, []);
+
+  async function Get() {
+    let arr = [];
+    const q = query(collection(db, "Events"));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      arr.push(doc.data());
+      console.log(doc.id, " => ", doc.data());
+    });
+    console.log("Array", arr);
+    if (arr.length > 0) {
+      setPostData(arr);
+    }
+
+  }
   const DATA = [
     {
       id: '0',
@@ -76,16 +112,17 @@ export default function Events({ navigation }) {
       {/* Middle view */}
       <View style={styles.body}>
         <FlatList
-          data={DATA}
-          keyExtractor={item => item.id}
+          data={postData}
+
           renderItem={({ item }) =>
             <TouchableOpacity
               onPress={() => navigation.navigate('EventDetails', {
-                title: item.title,
-                desc: item.description,
-                venue: item.venue,
-                date: item.date,
-                time: item.time
+                title: item.Title,
+                desc: item.Description,
+                venue: item.Venue,
+                date: item.time,
+                time: item.time,
+                uri: item.url
               })}>
               <View style={styles.innerview}>
                 <Image
@@ -94,9 +131,9 @@ export default function Events({ navigation }) {
                 ></Image>
                 <View style={{ width: '57%' }}>
                   <View style={styles.flatlistheaderView}>
-                    <Text style={styles.flatlistheadertext}>{item.title}</Text>
+                    <Text style={styles.flatlistheadertext}>{item.Title}</Text>
                   </View>
-                  <Text style={styles.datetext}>On {item.date}</Text>
+                  <Text style={styles.datetext}>On {item.time}</Text>
                 </View>
               </View>
             </TouchableOpacity>
