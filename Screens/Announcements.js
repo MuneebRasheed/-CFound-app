@@ -1,11 +1,46 @@
 
-import { StyleSheet, Text, View,FlatList,Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 import Footer from '../component/Footer';
 import Header from '../component/Header';
 import Ionicons from "react-native-vector-icons/Ionicons";
-
-
+import { collection, doc, setDoc, getDocs, where, orderBy, query, onSnapshot, docs, snapshot, getFirestore, Timestamp, addDoc } from "firebase/firestore";
+import { db } from '../firebase/config';
+import {
+  useState, useEffect,
+  useLayoutEffect,
+  useCallback
+} from 'react'
 export default function Announcements({ navigation }) {
+  const [postData, setPostData] = useState([]);
+  useEffect(() => {
+    Get();
+  }, [])
+  useLayoutEffect(() => {
+    const collectionRef = collection(db, 'Announcment');
+    const unsubscribe = onSnapshot(collectionRef, querySnapshot => {
+      console.log('querySnapshot unsusbscribe', querySnapshot?.docs);
+      Get();
+      return unsubscribe;
+    })
+
+  }, []);
+
+  async function Get() {
+    let arr = [];
+    const q = query(collection(db, "Announcment"));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      arr.push(doc.data());
+      console.log(doc.id, " => ", doc.data());
+    });
+    console.log("Array", arr);
+    if (arr.length > 0) {
+      setPostData(arr);
+    }
+
+  }
   const DATA = [
     {
       id: '0',
@@ -45,46 +80,48 @@ export default function Announcements({ navigation }) {
     },
   ];
 
-  function onNavigate (){
+  function onNavigate() {
     navigation.pop()
   }
-  
-    return (
-      // Main VIEW
-        <View style={[styles.container]}>
-          {/* TOP VIEW */}
-          <Header title='Announcements' navi={() => onNavigate()}/>
-          {/* Middle view */}
-          <View style = {styles.body}>
-            <FlatList
-            data={DATA}
-            keyExtractor={item => item.id}
-            renderItem={({item}) =>
+
+  return (
+    // Main VIEW
+    <View style={[styles.container]}>
+      {/* TOP VIEW */}
+      <Header title='Announcements' navi={() => onNavigate()} />
+      {/* Middle view */}
+      <View style={styles.body}>
+        <FlatList
+          data={postData}
+
+          renderItem={({ item }) =>
             <TouchableOpacity
-            onPress={()=> {navigation.navigate('AnnouncementDetails',{
-              title: item.title,
-              desc: item.details
-            })}}
+              onPress={() => {
+                navigation.navigate('AnnouncementDetails', {
+                  title: item.Title,
+                  desc: item.Description
+                })
+              }}
             >
-            <View style={styles.innerview}>
-              <Image
-                source={require('../assets/announcement.png')}
-                style={[styles.img]}
-              ></Image>
-              <View style={{width:'65%'}}>
-                <View style={styles.flatlistheaderView}>
-                  <Text style={styles.flatlistheadertext}>{item.title}</Text>
+              <View style={styles.innerview}>
+                <Image
+                  source={require('../assets/announcement.png')}
+                  style={[styles.img]}
+                ></Image>
+                <View style={{ width: '65%' }}>
+                  <View style={styles.flatlistheaderView}>
+                    <Text style={styles.flatlistheadertext}>{item.Title}</Text>
                   </View>
-                <Text style={styles.datetext}>On {item.date}</Text>
+                  <Text style={styles.datetext}>On {item.time}</Text>
+                </View>
               </View>
-              </View>
-              </TouchableOpacity>
-            }
-            />
-            <TouchableOpacity style = {styles.addbuttonopacity}
-            onPress={()=>{navigation.navigate('AnnouncementAdd')}}>
-            <Ionicons style={{color: 'black'}} name="add" size={38} />
             </TouchableOpacity>
+          }
+        />
+        <TouchableOpacity style={styles.addbuttonopacity}
+          onPress={() => { navigation.navigate('AnnouncementAdd') }}>
+          <Ionicons style={{ color: 'black' }} name="add" size={38} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -95,53 +132,53 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#3D3D3D'
   },
-  innerview:{
-    backgroundColor:'#242527',
-    marginBottom:'7%',
-    flexDirection:'row',
-    borderRadius:15,
+  innerview: {
+    backgroundColor: '#242527',
+    marginBottom: '7%',
+    flexDirection: 'row',
+    borderRadius: 15,
 
 
   },
   body: {
     flex: 0.89,
-    marginTop:'7%',
-    marginBottom:'2%',
-    alignItems:'center',
-    width:'100%'
+    marginTop: '7%',
+    marginBottom: '2%',
+    alignItems: 'center',
+    width: '100%'
   },
   img: {
     width: 90,
     height: 120,
     margin: 5
   },
-  flatlistheaderView:{
-    borderBottomWidth:1,
-    borderBottomColor:'#ce5c2b'
+  flatlistheaderView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ce5c2b'
   },
-  flatlistheadertext:{
+  flatlistheadertext: {
     fontSize: 15,
     fontWeight: 'bold',
-    color:'white',
-    paddingTop:'5%',
-    paddingBottom:'3%'
+    color: 'white',
+    paddingTop: '5%',
+    paddingBottom: '3%'
   },
-  datetext:{
-    fontSize: 10, 
-    color:'white',
-    position:'absolute',
-    right:'0.1%',
-    bottom:'5%'
+  datetext: {
+    fontSize: 10,
+    color: 'white',
+    position: 'absolute',
+    right: '0.1%',
+    bottom: '5%'
   },
-  addbuttonopacity:{
-    position:'absolute',
-    bottom:'5%',
-    right:'4%',
-    backgroundColor:'white',
-    borderRadius:30,
-    padding:'3%',
-    justifyContent:'center',
-    alignItems:'center',
-    opacity:0.8
+  addbuttonopacity: {
+    position: 'absolute',
+    bottom: '5%',
+    right: '4%',
+    backgroundColor: 'white',
+    borderRadius: 30,
+    padding: '3%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 0.8
   }
 });
