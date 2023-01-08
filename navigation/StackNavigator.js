@@ -16,13 +16,19 @@ import EventAdd from '../Screens/EventAdd';
 import AnnouncementAdd from '../Screens/AnnouncementAdd';
 import LostItemAdd from '../Screens/LostItemAdd';
 import FoundItemAdd from '../Screens/FoundItemAdd';
-
+import Screen1 from '../Screens/Screen1';
+import Screen2 from '../Screens/Screen2';
+import Screen3 from '../Screens/Screen3';
+import Screen4 from '../Screens/Screen4';
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        
+         <Stack.Screen name="Screen1" component={Screen1} />
+         <Stack.Screen name="Screen3" component={Screen3} />
+        <Stack.Screen name="Screen2" component={Screen2} />
+        <Stack.Screen name="Screen4" component={Screen4} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Home" component={BottomTabNavigator} />
